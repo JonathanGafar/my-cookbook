@@ -20,6 +20,17 @@
     "rules": {
         "semi": ["error", "always"],
         "space-before-function-paren": ["error", "never"],
-        "eol-last": ["error", "never"]
+        "eol-last": ["error", "never"],
+        "no-unused-vars": "off",
+        "object-curly-spacing": ["error", "never"],
+        "react/jsx-curly-spacing": ["error", {
+          "when": "never",
+          "children": {
+            "when": "never"
+          }
+        }],
+        "indent": ["error", "tab"],
+        "react/prop-types": [0],
+        "no-tabs": [0]
     }
 }
