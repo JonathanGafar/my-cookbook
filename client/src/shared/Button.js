@@ -1,10 +1,12 @@
 import React from 'react';
-import {Button as ChakraButton} from '@chakra-ui/react';
+import {Button as ChakraButton, Link} from '@chakra-ui/react';
 
 export default function Button(props) {
 	return (
 		<ChakraButton>
-			{props.text}
+			<Link _hover={{textDecoration: 'none'}}>
+				{props.text}
+			</Link>
 		</ChakraButton>
 	);
 }
