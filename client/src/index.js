@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 import {ChakraProvider} from '@chakra-ui/react';
 import {BrowserRouter} from 'react-router-dom';
 import {QueryClient, QueryClientProvider} from 'react-query';
 
 import theme from './theme/theme';
 
+// React Query object that allows interaction with the cache
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

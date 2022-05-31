@@ -1,5 +1,7 @@
+// Font file
 import '@fontsource/rubik/400.css';
 
+// Default styles for buttons
 const buttonBaseTheme = {
 	baseStyle: {
 		  fontWeight: '600',
@@ -28,10 +30,12 @@ const buttonBaseTheme = {
 	}
 };
 
+// Default button color
 const buttonColors = {
 	buttonColor: '#037888'
 };
 
+// Button outline for when a button is active or focused
 const buttonShadows = {
 	outline: '0 0 0 3px rgb(6, 176, 199)'
 };
