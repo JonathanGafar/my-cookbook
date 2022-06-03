@@ -28,26 +28,26 @@ export default function Signup() {
 					px='2rem'
 					pt='2rem'
 					pb='1rem'
-					minW={{base: '70%', sm: '40%', md: '20%'}}
+					minW={{base: '90%', sm: '55%', md: '40%', lg: '20%'}}
 					justifyContent='center'
 				>
 					<Input
-						placeholder='username'
+						placeholder='Username'
 						type='text'
 						my='0.6rem'
 					/>
 					<Input
-						placeholder='email'
+						placeholder='Email'
 						type='email'
 						my='0.6rem'
 					/>
 					<Input
-						placeholder='password'
+						placeholder='Password'
 						type='password'
 						my='0.6rem'
 					/>
 					<Input
-						placeholder='confirm password'
+						placeholder='Confirm password'
 						type='password'
 						my='0.6rem'
 					/>
