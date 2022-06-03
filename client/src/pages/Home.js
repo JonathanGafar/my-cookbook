@@ -5,6 +5,13 @@ import Button from '../shared/Button';
 import Navbar from '../shared/Navbar';
 
 export default function Home() {
+	const commonButtonProps = {
+		size: {
+			base: 'md',
+			md: 'lg'
+		}
+	};
+
 	return (
 		<Box>
 			<Navbar />
@@ -18,9 +25,9 @@ export default function Home() {
 					h={{base: '50vh', md: 'auto'}}
 					w={{base: '100%', md: '70%', lg: '60%', xl: '50%'}}
 				>
-					<Button text='Sign up' />
-					<Button text='Login' />
-					<Button text='Login as guest' />
+					<Button {...commonButtonProps} text='Sign up' />
+					<Button {...commonButtonProps} text='Login' />
+					<Button {...commonButtonProps} text='Login as guest' />
 				</Stack>
 			</VStack>
 		</Box>

@@ -21,8 +21,8 @@ const buttonBaseTheme = {
 	},
 	defaultProps: {
 		size: {
-			base: 'md',
-			md: 'lg'
+			base: 'sm',
+			md: 'md'
 		}
 	}
 };
