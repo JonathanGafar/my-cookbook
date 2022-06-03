@@ -1,16 +1,15 @@
 import {extendTheme} from '@chakra-ui/react';
+import '@fontsource/rubik/400.css';
 
 // Button theme objects
-import {
-	buttonBaseTheme as Button,
-	buttonColors as colors,
-	buttonShadows as shadows
-} from './components/ButtonTheme';
+import Button from './components/ButtonTheme';
+import colors from './colors';
+import fonts from './fonts';
 
 // Override the default Chakra theme
 const theme = extendTheme({
 	colors,
-	shadows,
+	fonts,
 	components: {
 		Button
 	}

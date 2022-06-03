@@ -15,7 +15,7 @@ export default function Home() {
 					direction={{base: 'column', md: 'row'}}
 					position={{base: 'static', md: 'absolute'}}
 					top={{base: 'auto', md: '15rem'}}
-					h={{base: '70vh', md: 'auto'}}
+					h={{base: '50vh', md: 'auto'}}
 					w={{base: '100%', md: '70%', lg: '60%', xl: '50%'}}
 				>
 					<Button text='Sign up' />
