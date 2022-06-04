@@ -13,7 +13,12 @@ export default function Home() {
 	};
 
 	return (
-		<Box>
+		<Box
+			h='100vh'
+			display='flex'
+			flexDirection='column'
+			bg='pageBackgroundColor'
+		>
 			<Navbar />
 			<VStack h='100%' justifyContent='center'>
 				<Stack
