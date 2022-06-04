@@ -1,5 +1,4 @@
 import {extendTheme} from '@chakra-ui/react';
-import '@fontsource/rubik/400.css';
 
 // Button theme objects
 import Button from './components/ButtonTheme';

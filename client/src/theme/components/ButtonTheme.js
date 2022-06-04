@@ -1,6 +1,3 @@
-// Font file
-import '@fontsource/rubik/400.css';
-
 // Default styles for buttons
 const buttonBaseTheme = {
 	baseStyle: {

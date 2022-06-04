@@ -1,7 +1,7 @@
+import '@fontsource/rubik/400.css';
+
 const fonts = {
-	body: 'Rubik, Arial',
-	button: 'Rubik, Arial',
-	a: 'Rubik, Arial'
+	body: 'Rubik, Arial'
 };
 
 export default fonts;
