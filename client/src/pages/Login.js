@@ -18,13 +18,14 @@ export default function Login() {
 	};
 
 	return (
-		<Box>
+		<Box h='100vh' bg='pageBackgroundColor'>
 			<Navbar />
 			<Spacer h={{base: '1.5rem', sm: '3rem', md: '5rem'}} />
 			<form style={{...formStyles}}>
 				<VStack
+					bg='white'
 					borderWidth='1px'
-					boxShadow='lg'
+					boxShadow='xl'
 					borderRadius='10px'
 					px='2rem'
 					pt='2rem'
