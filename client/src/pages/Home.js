@@ -25,8 +25,6 @@ export default function Home() {
 					justifyContent={{base: 'space-evenly', md: 'space-between'}}
 					alignItems='center'
 					direction={{base: 'column', md: 'row'}}
-					// position={{base: 'static', md: 'absolute'}}
-					// top={{base: 'auto', md: '15rem'}}
 					h='50%'
 					w={{base: '100%', md: '70%', lg: '60%', xl: '50%'}}
 				>
