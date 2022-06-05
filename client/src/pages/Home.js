@@ -20,14 +20,14 @@ export default function Home() {
 			bg='pageBackgroundColor'
 		>
 			<Navbar />
-			<VStack h='100%' justifyContent='center'>
+			<VStack h='100%' justifyContent='flex-start'>
 				<Stack
 					justifyContent={{base: 'space-evenly', md: 'space-between'}}
-					alignItems={{base: 'center', md: 'auto'}}
+					alignItems='center'
 					direction={{base: 'column', md: 'row'}}
-					position={{base: 'static', md: 'absolute'}}
-					top={{base: 'auto', md: '15rem'}}
-					h={{base: '50vh', md: 'auto'}}
+					// position={{base: 'static', md: 'absolute'}}
+					// top={{base: 'auto', md: '15rem'}}
+					h='50%'
 					w={{base: '100%', md: '70%', lg: '60%', xl: '50%'}}
 				>
 					<Button {...commonButtonProps} text='Sign up' />
