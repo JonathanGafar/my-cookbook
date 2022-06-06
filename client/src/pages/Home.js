@@ -10,7 +10,11 @@ export default function Home() {
 			base: 'md',
 			md: 'lg'
 		},
-		bg: '#037888'
+		bg: 'buttonColor',
+		_hover: {
+			bg: 'buttonColor',
+			opacity: '0.7'
+		}
 	};
 
 	return (

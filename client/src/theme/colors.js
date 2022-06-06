@@ -1,6 +1,6 @@
 const colors = {
 	buttonColor: '#037888',
-	pageBackgroundColor: '#c2d2bd'
+	pageBackgroundColor: 'white'
 };
 
 export default colors;

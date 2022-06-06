@@ -61,7 +61,11 @@ export default function Signup() {
 						size={{base: 'sm', md: 'md'}}
 						type='submit'
 						text='Sign up'
-						bg='#037888'
+						bg='buttonColor'
+						_hover={{
+							bg: 'buttonColor',
+							opacity: '0.7'
+						}}
 					/>
 				</VStack>
 			</form>

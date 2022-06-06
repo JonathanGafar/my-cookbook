@@ -8,6 +8,7 @@ export default function Button(props) {
 			fontWeight={props.fontWeight}
 			type={props.type}
 			bg={props.bg}
+			_hover={props._hover}
 		>
 			{props.text}
 		</ChakraButton>

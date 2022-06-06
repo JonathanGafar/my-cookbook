@@ -53,7 +53,11 @@ export default function Login() {
 						size={{base: 'sm', md: 'md'}}
 						type='submit'
 						text='Login'
-						bg='#037888'
+						bg='buttonColor'
+						_hover={{
+							bg: 'buttonColor',
+							opacity: '0.7'
+						}}
 					/>
 					<Spacer direction='column'/>
 					<Link>Forgot password?</Link>
