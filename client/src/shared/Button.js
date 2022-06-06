@@ -7,6 +7,7 @@ export default function Button(props) {
 			size={props.size}
 			fontWeight={props.fontWeight}
 			type={props.type}
+			bg={props.bg}
 		>
 			{props.text}
 		</ChakraButton>

@@ -5,14 +5,11 @@ const buttonBaseTheme = {
 	},
 	variants: {
 		solid: {
-			bg: 'buttonColor',
 			color: 'white',
 			_hover: {
-				opacity: '0.7',
-				bg: '#037888'
+				opacity: '0.7'
 			},
 			_active: {
-				bg: '#037888'
 			}
 		}
 	},

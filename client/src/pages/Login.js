@@ -17,6 +17,11 @@ export default function Login() {
 		alignItems: 'center'
 	};
 
+	const commonInputProps = {
+		bg: '#037888',
+		my: '0.6rem'
+	};
+
 	return (
 		<Box h='100vh' bg='pageBackgroundColor'>
 			<Navbar />
@@ -36,17 +41,19 @@ export default function Login() {
 					<Input
 						placeholder='Email'
 						type='text'
-						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Password'
 						type='password'
 						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Button
 						size={{base: 'sm', md: 'md'}}
 						type='submit'
 						text='Login'
+						bg='#037888'
 					/>
 					<Spacer direction='column'/>
 					<Link>Forgot password?</Link>

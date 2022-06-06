@@ -16,6 +16,11 @@ export default function Signup() {
 		alignItems: 'center'
 	};
 
+	const commonInputProps = {
+		bg: '#037888',
+		my: '0.6rem'
+	};
+
 	return (
 		<Box h='100vh' bg='pageBackgroundColor'>
 			<Navbar />
@@ -35,27 +40,28 @@ export default function Signup() {
 					<Input
 						placeholder='Username'
 						type='text'
-						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Email'
 						type='email'
-						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Password'
 						type='password'
-						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Confirm password'
 						type='password'
-						my='0.6rem'
+						{...commonInputProps}
 					/>
 					<Button
 						size={{base: 'sm', md: 'md'}}
 						type='submit'
 						text='Sign up'
+						bg='#037888'
 					/>
 				</VStack>
 			</form>

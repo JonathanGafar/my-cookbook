@@ -9,7 +9,8 @@ export default function Home() {
 		size: {
 			base: 'md',
 			md: 'lg'
-		}
+		},
+		bg: '#037888'
 	};
 
 	return (
