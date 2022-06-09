@@ -2,7 +2,7 @@ import React from 'react';
 import {Stack, VStack, HStack, Image, Box} from '@chakra-ui/react';
 
 import Button from '../shared/Button';
-import Navbar from '../shared/Navbar';
+import HNavbar from '../shared/HNavbar';
 
 export default function Home() {
 	const commonButtonProps = {
@@ -24,7 +24,7 @@ export default function Home() {
 			flexDirection='column'
 			bg='pageBackgroundColor'
 		>
-			<Navbar />
+			<HNavbar />
 			<VStack h='100%' justifyContent='flex-start'>
 				<Stack
 					justifyContent={{base: 'space-evenly', md: 'space-between'}}

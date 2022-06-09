@@ -6,7 +6,7 @@ import {
 	Link
 } from '@chakra-ui/react';
 
-import Navbar from '../shared/Navbar';
+import HNavbar from '../shared/HNavbar';
 import Input from '../shared/Input';
 import Button from '../shared/Button';
 
@@ -24,7 +24,7 @@ export default function Login() {
 
 	return (
 		<Box h='100vh' bg='pageBackgroundColor'>
-			<Navbar />
+			<HNavbar />
 			<Spacer h={{base: '1.5rem', sm: '3rem', md: '5rem'}} />
 			<form style={{...formStyles}}>
 				<VStack

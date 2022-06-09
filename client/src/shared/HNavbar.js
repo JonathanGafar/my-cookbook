@@ -8,7 +8,7 @@ export default function HNavbar() {
 		<HStack
 			h={{base: '4rem', md: '5rem'}} alignItems='center'
 			justifyContent='center'
-			bgGradient='linear(to-b, #037888, #788803)'
+			bgGradient='linear(to-b, #037888, #0bbed6)'
 		>
 			<Image src={LogoTransparent} boxSize={{base: '15rem', md: '18.75rem'}} />
 		</HStack>
