@@ -17,6 +17,8 @@ export default function NavButton(props) {
 			mr={props.mr}
 			mt={props.mt}
 			mb={props.mb}
+			_active={{borderColor: 'none'}}
+			_focus={{borderColor: 'none'}}
 		/>
 	);
 }
