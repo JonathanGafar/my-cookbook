@@ -20,24 +20,22 @@ export default function Home() {
 	return (
 		<Box
 			h='100vh'
-			display='flex'
-			flexDirection='column'
 			bg='pageBackgroundColor'
 		>
 			<HNavbar />
-			<VStack h='100%' justifyContent='flex-start'>
-				<Stack
-					justifyContent={{base: 'space-evenly', md: 'space-between'}}
-					alignItems='center'
-					direction={{base: 'column', md: 'row'}}
-					h='50%'
-					w={{base: '100%', md: '70%', lg: '60%', xl: '50%'}}
-				>
-					<Button {...commonButtonProps} text='Sign up' />
-					<Button {...commonButtonProps} text='Login' />
-					<Button {...commonButtonProps} text='Login as guest' />
-				</Stack>
-			</VStack>
+			<Stack
+				mt={{base: '8rem', md: '0'}}
+				justify={{base: 'flexStart', md: 'center'}}
+				align='center'
+				direction={{base: 'column', md: 'row'}}
+				h={{base: 'auto', md: '50%'}}
+				w='100%'
+				spacing={{base: '3rem', md: '6rem', lg: '7rem', xl: '8rem'}}
+			>
+				<Button {...commonButtonProps} text='Sign up' />
+				<Button {...commonButtonProps} text='Login' />
+				<Button {...commonButtonProps} text='Login as guest' />
+			</Stack>
 		</Box>
 	);
 }
