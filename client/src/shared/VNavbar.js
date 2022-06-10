@@ -17,36 +17,28 @@ export default function VNavbar() {
 	return (
 		<VStack
 			h='100vh'
-			justifyContent='flex-start'
+			justify='flex-start'
 			w='16rem'
 			bgGradient='linear(to-b, #037888, #0bbed6)'
+			spacing='2rem'
 		>
 			<Image
 				pt='2.5rem'
 				src={LogoTransparent}
 			/>
-			<VStack
-				pt='2rem'
-				alignItems='center'
-				justifyContent='space-around'
-				h='50%'
-				w='100%'
-			>
-				<Link {...commonLinkProps}>Add new recipe</Link>
-				<Link {...commonLinkProps}>Profile settings</Link>
-				<InputGroupRight
-					w='80%'
-					placeholder='Search people'
-					ariaLabel='Search people'
-					icon={<FaSearch />}
-				/>
-				<InputGroupRight
-					w='80%'
-					placeholder='Search recipes'
-					areaLabel='Search recipes'
-					icon={<FaSearch />}
-				/>
-			</VStack>
+			<Link {...commonLinkProps}>Add new recipe</Link>
+			<InputGroupRight
+				w='80%'
+				placeholder='Search people'
+				ariaLabel='Search people'
+				icon={<FaSearch />}
+			/>
+			<InputGroupRight
+				w='80%'
+				placeholder='Search recipes'
+				areaLabel='Search recipes'
+				icon={<FaSearch />}
+			/>
 		</VStack>
 	);
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import {IconButton} from '@chakra-ui/react';
-import {MdNotifications, MdNotificationsActive} from 'react-icons/md';
 
 export default function NavButton(props) {
 	return (
