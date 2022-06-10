@@ -39,6 +39,7 @@ export default function LoggedIn() {
 					_hover={{bg: 'white'}}
 					mr='1rem'
 					mb='1rem'
+					ariaLabel='privacy settings and logout options'
 				/>
 				<NavButton
 					icon={<MdNotifications size={30}/>}
@@ -47,6 +48,7 @@ export default function LoggedIn() {
 					_hover={{bg: 'white'}}
 					mr='1rem'
 					mb='1rem'
+					ariaLabel='notifications'
 				/>
 			</GridItem>
 			<GridItem bg='white' colStart='2' colEnd='-1' rowStart='2' rowEnd='-1'>

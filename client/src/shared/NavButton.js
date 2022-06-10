@@ -19,6 +19,7 @@ export default function NavButton(props) {
 			mb={props.mb}
 			_active={{borderColor: 'none'}}
 			_focus={{borderColor: 'none'}}
+			aria-label={props.ariaLabel}
 		/>
 	);
 }
