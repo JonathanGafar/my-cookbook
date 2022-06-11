@@ -18,7 +18,7 @@ export default function Signup() {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem' //
+		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
 	};
 
 	const commonInputProps = {

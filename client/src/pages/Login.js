@@ -2,8 +2,8 @@ import React from 'react';
 import {
 	VStack,
 	Box,
-	Spacer,
-	Link
+	Link,
+	useMediaQuery
 } from '@chakra-ui/react';
 
 import HNavbar from '../shared/HNavbar';
@@ -11,10 +11,15 @@ import Input from '../shared/Input';
 import Button from '../shared/Button';
 
 export default function Login() {
+	/* Detect whether the screen is medium size (30rem) or larger. useMediaQuery
+	an array of booleans. */
+	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 30rem)');
+
 	const formStyles = {
 		display: 'flex',
 		flexDirection: 'column',
-		alignItems: 'center'
+		alignItems: 'center',
+		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
 	};
 
 	const commonInputProps = {
@@ -23,9 +28,11 @@ export default function Login() {
 	};
 
 	return (
-		<Box h='100vh' bg='pageBackgroundColor'>
+		<Box
+			h='100vh'
+			bg='pageBackgroundColor'
+		>
 			<HNavbar />
-			<Spacer h={{base: '1.5rem', sm: '3rem', md: '5rem'}} />
 			<form style={{...formStyles}}>
 				<VStack
 					bg='white'
@@ -35,8 +42,8 @@ export default function Login() {
 					px='2rem'
 					pt='2rem'
 					pb='1rem'
-					minW={{base: '90%', sm: '55%', md: '40%', lg: '20%'}}
-					justifyContent='center'
+					minW={{base: '90%', sm: '65%', md: '35%', lg: '25%'}}
+					justify='center'
 				>
 					<Input
 						placeholder='Email'
@@ -59,7 +66,6 @@ export default function Login() {
 							opacity: '0.7'
 						}}
 					/>
-					<Spacer direction='column'/>
 					<Link>Forgot password?</Link>
 				</VStack>
 			</form>
