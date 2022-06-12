@@ -5,6 +5,7 @@ import {
 	Spacer,
 	Divider
 } from '@chakra-ui/react';
+
 import {
 	MdNotifications,
 	MdNotificationsActive,
@@ -12,7 +13,8 @@ import {
 } from 'react-icons/md';
 
 import VNavbar from '../shared/VNavbar';
-import NavButton from '../shared/NavButton';
+import NotificationsButton from '../singles/NotificationsButton';
+import ProfileSettingsButton from '../singles/ProfileSettingsButton';
 
 export default function LoggedIn() {
 	return (
@@ -32,24 +34,8 @@ export default function LoggedIn() {
 				rowStart='1'
 				rowEnd='2'
 			>
-				<NavButton
-					icon={<MdMenu size={30}/>}
-					bg='white'
-					color='buttonColor'
-					_hover={{bg: 'white'}}
-					mr='1rem'
-					mb='1rem'
-					ariaLabel='privacy settings and logout options'
-				/>
-				<NavButton
-					icon={<MdNotifications size={30}/>}
-					bg='white'
-					color='buttonColor'
-					_hover={{bg: 'white'}}
-					mr='1rem'
-					mb='1rem'
-					ariaLabel='notifications'
-				/>
+				<ProfileSettingsButton />
+				<NotificationsButton />
 			</GridItem>
 			<GridItem bg='white' colStart='2' colEnd='-1' rowStart='2' rowEnd='-1'>
 				<Divider orientation='horizontal' />
