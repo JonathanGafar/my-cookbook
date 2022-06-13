@@ -6,27 +6,19 @@ import InputGroupRight from './InputGroupRight';
 import LogoTransparent from '../assets/logo_transparent_rectangle.png';
 
 export default function VNavbar() {
-	const commonLinkProps = {
-		color: 'white',
-		fontSize: '1.3rem',
-		_hover: {
-			textDecoration: 'none'
-		}
-	};
-
 	return (
 		<VStack
 			h='100vh'
 			justify='flex-start'
 			w='16rem'
 			bgGradient='linear(to-b, #037888, #0bbed6)'
-			spacing='2rem'
+			spacing='4rem'
 		>
 			<Image
 				pt='2.5rem'
 				src={LogoTransparent}
+				mb='0.5rem'
 			/>
-			<Link {...commonLinkProps}>Add new recipe</Link>
 			<InputGroupRight
 				w='80%'
 				placeholder='Search people'

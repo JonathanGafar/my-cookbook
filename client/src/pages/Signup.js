@@ -10,9 +10,9 @@ import Input from '../shared/Input';
 import Button from '../shared/Button';
 
 export default function Signup() {
-	/* Detect whether the screen is medium size (30rem) or larger. useMediaQuery
-	an array of booleans. */
-	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 30rem)');
+	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
+	returns an array of booleans. */
+	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
 
 	const formStyles = {
 		display: 'flex',

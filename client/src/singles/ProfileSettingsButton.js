@@ -19,12 +19,14 @@ export default function ProfileSettingsButton(props) {
 				w='fit-content !important'
 				h='fit-content !important'
 				p='0 !important'
-				icon={<MdMenu size='1.875rem' />}
-				bg='white'
-				color='buttonColor'
-				_hover={{bg: 'white'}}
-				mr='1rem'
-				mb='1rem'
+				position={props.position}
+				right={props.right}
+				icon={<MdMenu size={props.size} />}
+				bg={props.bg}
+				color={props.color}
+				_hover={props._hover}
+				mr={props.mr}
+				mb={props.mb}
 				aria-label='privacy settings and logout options'
 				isRound
 				_active={{borderColor: 'none'}}

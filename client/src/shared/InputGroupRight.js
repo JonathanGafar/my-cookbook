@@ -8,7 +8,7 @@ import {
 
 export default function InputGroupRight(props) {
 	return (
-		<ChakraInputGroup borderRadius='md' bg='white' w={props.w}>
+		<ChakraInputGroup zIndex='0' borderRadius='md' bg='white' w={props.w}>
 			<Input
 				placeholder={props.placeholder}
 				type={props.type}

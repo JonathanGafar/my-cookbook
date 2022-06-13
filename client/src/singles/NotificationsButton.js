@@ -8,12 +8,14 @@ export default function NotificationsButton(props) {
 			w='fit-content !important'
 			h='fit-content !important'
 			p='0 !important'
-			icon={<MdNotifications size='1.875rem' />}
-			bg='white'
-			color='buttonColor'
-			_hover={{bg: 'white'}}
-			mr='1rem'
-			mb='1rem'
+			position={props.position}
+			right={props.right}
+			icon={<MdNotifications size={props.size} />}
+			bg={props.bg}
+			color={props.color}
+			_hover={props._hover}
+			mr={props.mr}
+			mb={props.mb}
 			aria-label='notifications'
 			isRound
 			_active={{borderColor: 'none'}}

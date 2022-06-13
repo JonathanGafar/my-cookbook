@@ -9,6 +9,7 @@ export default function Button(props) {
 			type={props.type}
 			bg={props.bg}
 			_hover={props._hover}
+			mx='0'
 		>
 			{props.text}
 		</ChakraButton>
