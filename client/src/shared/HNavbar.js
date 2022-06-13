@@ -34,7 +34,7 @@ export default function HNavbar() {
 	);
 }
 
-/* Putting the nav buttons into a nodeless parent component. This makes it easier
+/* Putting the nav buttons into a nodeless component. This makes it easier
  to conditionally render the group in HNavbar */
 function NavButtonGroup(props) {
 	const commonNavButtonProps = {
