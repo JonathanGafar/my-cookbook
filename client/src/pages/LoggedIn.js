@@ -68,8 +68,8 @@ function LargeScreenPage(props) {
 				rowEnd='2'
 			>
 				<AddRecipeButton {...commonIconButtonProps} />
-				<ProfileSettingsButton {...commonIconButtonProps} />
 				<NotificationsButton {...commonIconButtonProps} />
+				<ProfileSettingsButton {...commonIconButtonProps} />
 			</GridItem>
 			<GridItem bg='white' colStart='2' colEnd='-1' rowStart='2' rowEnd='-1'>
 				<Divider orientation='horizontal' />
@@ -86,6 +86,20 @@ function MediumScreenPage(props) {
 			bg='pageBackgroundColor'
 		>
 			<HNavbar />
+			<VStack mt='3rem' w='100%' spacing='1.5rem'>
+				<InputGroupRight
+					w='45%'
+					placeholder='Search people'
+					ariaLabel='Search people'
+					icon={<FaSearch />}
+				/>
+				<InputGroupRight
+					w='45%'
+					placeholder='Search recipes'
+					areaLabel='Search recipes'
+					icon={<FaSearch />}
+				/>
+			</VStack>
 		</Box>
 
 	);
@@ -110,8 +124,8 @@ function SmallScreenPage(props) {
 			<HNavbar />
 			<HStack mt='2rem' spacing='3rem' justify='center'>
 				<AddRecipeButton {...commonIconButtonProps} />
-				<ProfileSettingsButton {...commonIconButtonProps} />
 				<NotificationsButton {...commonIconButtonProps} />
+				<ProfileSettingsButton {...commonIconButtonProps} />
 			</HStack>
 			<VStack mt='3rem' w='100%' spacing='1.5rem'>
 				<InputGroupRight
