@@ -52,11 +52,11 @@ function NavButtonGroup(props) {
 			{...commonNavButtonProps}
 			right='7rem'
 		/>
-		<ProfileSettingsButton
+		<NotificationsButton
 			{...commonNavButtonProps}
 			right='4rem'
 		/>
-		<NotificationsButton
+		<ProfileSettingsButton
 			{...commonNavButtonProps}
 			right='1rem'
 		/>

@@ -22,6 +22,7 @@ export default function InputGroupRight(props) {
 					color='gray'
 					_focus={{transform: 'scale(1.2)'}}
 					_hover={{transform: 'scale(1.2)'}}
+					tabIndex='-1'
 				/>
 			</InputRightElement>
 		</ChakraInputGroup>
