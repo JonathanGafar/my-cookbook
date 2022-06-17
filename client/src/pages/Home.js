@@ -1,7 +1,6 @@
 import React from 'react';
-import {Stack, VStack, HStack, Image, Box} from '@chakra-ui/react';
+import {Stack, Box, Button} from '@chakra-ui/react';
 
-import Button from '../shared/Button';
 import HNavbar from '../shared/HNavbar';
 
 export default function Home() {
@@ -10,11 +9,7 @@ export default function Home() {
 			base: 'md',
 			md: 'lg'
 		},
-		bg: 'buttonColor',
-		_hover: {
-			bg: 'buttonColor',
-			opacity: '0.7'
-		}
+		variant: 'generalButton'
 	};
 
 	return (
@@ -32,9 +27,15 @@ export default function Home() {
 				w='100%'
 				spacing={{base: '3rem', md: '6rem', lg: '7rem', xl: '8rem'}}
 			>
-				<Button {...commonButtonProps} text='Sign up' />
-				<Button {...commonButtonProps} text='Login' />
-				<Button {...commonButtonProps} text='Login as guest' />
+				<Button {...commonButtonProps}>
+					Sign up
+				</Button>
+				<Button {...commonButtonProps}>
+					Log in
+				</Button>
+				<Button {...commonButtonProps}>
+					Log in as guest
+				</Button>
 			</Stack>
 		</Box>
 	);

@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-	VStack,
-	Box,
-	useMediaQuery
-} from '@chakra-ui/react';
+import {VStack,	Box, Button, useMediaQuery} from '@chakra-ui/react';
 
 import HNavbar from '../shared/HNavbar';
 import Input from '../shared/Input';
-import Button from '../shared/Button';
 
 export default function Signup() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
@@ -65,15 +60,10 @@ export default function Signup() {
 						{...commonInputProps}
 					/>
 					<Button
-						size={{base: 'sm', md: 'md'}}
-						type='submit'
-						text='Sign up'
-						bg='buttonColor'
-						_hover={{
-							bg: 'buttonColor',
-							opacity: '0.7'
-						}}
-					/>
+						variant='generalButton'
+					>
+						Sign up
+					</Button>
 				</VStack>
 			</form>
 		</Box>
