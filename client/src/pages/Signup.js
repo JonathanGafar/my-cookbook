@@ -1,8 +1,7 @@
 import React from 'react';
-import {VStack,	Box, Button, useMediaQuery} from '@chakra-ui/react';
+import {VStack,	Box, Button, useMediaQuery, Input} from '@chakra-ui/react';
 
 import HNavbar from '../shared/HNavbar';
-import Input from '../shared/Input';
 
 export default function Signup() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
@@ -14,11 +13,6 @@ export default function Signup() {
 		flexDirection: 'column',
 		alignItems: 'center',
 		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
-	};
-
-	const commonInputProps = {
-		bg: '#037888',
-		my: '0.6rem'
 	};
 
 	return (
@@ -38,26 +32,23 @@ export default function Signup() {
 					pb='1rem'
 					minW={{base: '90%', sm: '55%', md: '40%', lg: '20%'}}
 					justify='center'
+					spacing='1.75rem'
 				>
 					<Input
 						placeholder='Username'
 						type='text'
-						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Email'
 						type='email'
-						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Password'
 						type='password'
-						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Confirm password'
 						type='password'
-						{...commonInputProps}
 					/>
 					<Button
 						variant='generalButton'
