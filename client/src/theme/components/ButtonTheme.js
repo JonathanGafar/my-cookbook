@@ -4,12 +4,15 @@ const buttonBaseTheme = {
 		  fontWeight: '100'
 	},
 	variants: {
-		solid: {
+		generalButton: {
+			bg: 'buttonColor',
 			color: 'white',
+			w: 'fit-content',
 			_hover: {
 				opacity: '0.7'
 			},
 			_active: {
+				opacity: '0.7'
 			}
 		}
 	},

@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-	VStack,
-	Box,
-	Link,
-	useMediaQuery
-} from '@chakra-ui/react';
+import {VStack, Button, Box, Link, Input, useMediaQuery} from '@chakra-ui/react';
 
 import HNavbar from '../shared/HNavbar';
-import Input from '../shared/Input';
-import Button from '../shared/Button';
 
 export default function Login() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
@@ -20,11 +13,6 @@ export default function Login() {
 		flexDirection: 'column',
 		alignItems: 'center',
 		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
-	};
-
-	const commonInputProps = {
-		bg: '#037888',
-		my: '0.6rem'
 	};
 
 	return (
@@ -44,28 +32,20 @@ export default function Login() {
 					pb='1rem'
 					minW={{base: '90%', sm: '65%', md: '35%', lg: '25%'}}
 					justify='center'
+					spacing='1.75rem'
 				>
 					<Input
 						placeholder='Email'
 						type='text'
-						{...commonInputProps}
 					/>
 					<Input
 						placeholder='Password'
 						type='password'
 						my='0.6rem'
-						{...commonInputProps}
 					/>
-					<Button
-						size={{base: 'sm', md: 'md'}}
-						type='submit'
-						text='Login'
-						bg='buttonColor'
-						_hover={{
-							bg: 'buttonColor',
-							opacity: '0.7'
-						}}
-					/>
+					<Button variant='generalButton'>
+						Log in
+					</Button>
 					<Link>Forgot password?</Link>
 				</VStack>
 			</form>
