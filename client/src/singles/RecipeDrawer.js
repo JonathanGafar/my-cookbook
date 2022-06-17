@@ -8,11 +8,24 @@ import {
 	DrawerFooter,
 	DrawerHeader,
 	useDisclosure,
-	Input,
-	Button
+	Input
 } from '@chakra-ui/react';
 
+import Button from '../shared/Button';
+
 export default function RecipeDrawer(props) {
+	const commonButtonProps = {
+		size: {
+			base: 'md',
+			md: 'lg'
+		},
+		bg: 'buttonColor',
+		_hover: {
+			bg: 'buttonColor',
+			opacity: '0.7'
+		}
+	};
+
 	const {isOpen, onOpen, onClose} = useDisclosure();
 	const btnRef = React.useRef();
 
@@ -21,10 +34,10 @@ export default function RecipeDrawer(props) {
 			isOpen={props.isOpen}
 			placement='top'
 			onClose={props.onClose}
-			finalFocusRef={btnRef}
+			size='lg'
 		>
 			<DrawerOverlay />
-			<DrawerContent>
+			<DrawerContent w='90%' h='90%' mx='auto'>
 				<DrawerCloseButton />
 				<DrawerHeader>Create your account</DrawerHeader>
 
@@ -33,10 +46,13 @@ export default function RecipeDrawer(props) {
 				</DrawerBody>
 
 				<DrawerFooter>
-					<Button variant='outline' mr={3} onClick={props.onClose}>
-        Cancel
-					</Button>
-					<Button colorScheme='blue'>Save</Button>
+					<Button
+						{...commonButtonProps}
+						text='Cancel'
+						mr={3}
+						onClick={props.onClose}
+					/>
+					<Button text='Save' {...commonButtonProps} bg='buttonColor' />
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>
