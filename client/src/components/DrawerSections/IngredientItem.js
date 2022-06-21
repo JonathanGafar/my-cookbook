@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {
 	HStack,
 	InputGroup,
@@ -14,6 +14,12 @@ import RecipeContext from '../../contexts/recipe_context/RecipeContext';
 export default function IngredientItem(props) {
 	const {recipeState, onIngredientStepChange} = useContext(RecipeContext);
 
+	const inputRef = useRef();
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
+
 	// The size of the button depends on the screen size
 	const buttonSize = useBreakpointValue({
 		base: '0.8rem',
@@ -28,6 +34,7 @@ export default function IngredientItem(props) {
 				>
 				</InputLeftElement>
 				<Input
+					ref={inputRef}
 					type='text'
 					placeholder='Enter ingredient...'
 					value={recipeState.ingredients[props.ingredientNum - 1]}
