@@ -11,12 +11,12 @@ import {
 
 import {FaSearch} from 'react-icons/fa';
 
-import VNavbar from '../shared/VNavbar';
-import HNavbar from '../shared/HNavbar';
-import AddRecipeButton from '../singles/AddRecipeButton';
-import ProfileSettingsButton from '../singles/ProfileSettingsButton';
-import NotificationsButton from '../singles/NotificationsButton';
-import InputGroupRight from '../shared/InputGroupRight';
+import VNavbar from '../components/VNavbar';
+import HNavbar from '../components/HNavbar';
+import AddRecipeButton from '../components/AddRecipeButton';
+import ProfileSettingsButton from '../components/ProfileSettingsButton';
+import NotificationsButton from '../components/NotificationsButton';
+import InputGroupRight from '../components/InputGroupRight';
 
 export default function LoggedIn() {
 	/* Detects the screen size and sets screenSize to be equal to its alias.
@@ -31,7 +31,7 @@ export default function LoggedIn() {
 	if (screenSize === 'large') {
 		return (<LargeScreenPage />);
 	} else if (screenSize === 'medium') {
-		return (<MediumScreenPage />);
+		return (<SmallMediumScreenPage />);
 	} else if (screenSize === 'small') {
 		return (<SmallScreenPage />);
 	}
@@ -79,7 +79,7 @@ function LargeScreenPage(props) {
 };
 
 // The layout for screens whose widths are 39rem or larger
-function MediumScreenPage(props) {
+function SmallMediumScreenPage(props) {
 	return (
 		<Box
 			h='100vh'

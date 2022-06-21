@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	InputGroup as ChakraInputGroup,
+	InputGroup,
 	Input,
 	InputRightElement,
 	IconButton
@@ -8,7 +8,7 @@ import {
 
 export default function InputGroupRight(props) {
 	return (
-		<ChakraInputGroup zIndex='0' borderRadius='md' bg='white' w={props.w}>
+		<InputGroup zIndex='0' borderRadius='md' bg='white' w={props.w}>
 			<Input
 				placeholder={props.placeholder}
 				type={props.type}
@@ -20,11 +20,10 @@ export default function InputGroupRight(props) {
 					size='md'
 					colorScheme='white'
 					color='gray'
-					_focus={{transform: 'scale(1.2)'}}
 					_hover={{transform: 'scale(1.2)'}}
 					tabIndex='-1'
 				/>
 			</InputRightElement>
-		</ChakraInputGroup>
+		</InputGroup>
 	);
 }

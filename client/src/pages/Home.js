@@ -1,7 +1,7 @@
 import React from 'react';
 import {Stack, Box, Button} from '@chakra-ui/react';
 
-import HNavbar from '../shared/HNavbar';
+import HNavbar from '../components/HNavbar';
 
 export default function Home() {
 	const commonButtonProps = {
