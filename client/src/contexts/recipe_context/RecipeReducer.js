@@ -15,6 +15,7 @@ export default function recipeReducer(state, action) {
 			...state,
 			ingredients: [...state.ingredients, action.payload]
 		};
+	/* This action returns a state equal to the first one except for the state.ingredients array having an ingredient added in the appropriate spot */
 	case 'onIngredientStepChange':
 		return {
 			...state,

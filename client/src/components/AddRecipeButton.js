@@ -18,6 +18,7 @@ import {MdPostAdd} from 'react-icons/md';
 import RecipeDrawer from './RecipeDrawer';
 
 export default function AddRecipeButton(props) {
+	/* Functions and boolean variables that are passed down as a prop to RecipeDrawer and IconButton to facilitate the drawer opening and closing */
 	const {isOpen, onOpen, onClose} = useDisclosure();
 
 	return (

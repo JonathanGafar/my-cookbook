@@ -14,8 +14,10 @@ import RecipeContext from '../../contexts/recipe_context/RecipeContext';
 export default function IngredientItem(props) {
 	const {recipeState, onIngredientStepChange} = useContext(RecipeContext);
 
+	// Reference to the Input component
 	const inputRef = useRef();
 
+	// Focuses the Input component text box upon its creation
 	useEffect(() => {
 		inputRef.current.focus();
 	}, []);

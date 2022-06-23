@@ -19,8 +19,6 @@ import DescriptionDrawerSection from './DrawerSections/DescriptionDrawerSection'
 import IngredientsDrawerSection from './DrawerSections/IngredientsDrawerSection';
 
 export default function RecipeDrawer(props) {
-	const btnRef = React.useRef();
-
 	return (
 		<Drawer
 			isOpen={props.isOpen}
