@@ -7,16 +7,13 @@ import {
 	DrawerCloseButton,
 	DrawerFooter,
 	DrawerHeader,
-	useDisclosure,
-	HStack,
-	Textarea,
-	Button,
-	Text,
-	IconButton
+	Button
 } from '@chakra-ui/react';
 
 import DescriptionDrawerSection from './DrawerSections/DescriptionDrawerSection';
 import IngredientsDrawerSection from './DrawerSections/IngredientsDrawerSection';
+import RecipeStepDrawerSection from './DrawerSections/RecipeStepDrawerSection';
+import PhotoDrawerSection from './DrawerSections/PhotoDrawerSection';
 
 export default function RecipeDrawer(props) {
 	return (
@@ -42,10 +39,9 @@ export default function RecipeDrawer(props) {
 				<DrawerBody>
 					<DescriptionDrawerSection/>
 					<IngredientsDrawerSection/>
-					{/* <DrawerSection isEditable name='Ingredients' />
-					<DrawerSection isEditable name='Steps' />
-					<DrawerSection isEditable name='Photos' />
-					<DrawerSection name='Privacy' /> */}
+					<RecipeStepDrawerSection />
+					<PhotoDrawerSection />
+					{/* <DrawerSection name='Privacy' /> */}
 				</DrawerBody>
 
 				<DrawerFooter>

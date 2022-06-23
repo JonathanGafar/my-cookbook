@@ -11,11 +11,11 @@ import {FaTrash} from 'react-icons/fa';
 
 import RecipeContext from '../../contexts/recipe_context/RecipeContext';
 
-export default function IngredientItem(props) {
+export default function RecipeStepItem(props) {
 	const {
 		recipeState,
-		onIngredientStepChange,
-		deleteIngredientStep
+		onRecipeStepChange,
+		deleteRecipeStep
 	} = useContext(RecipeContext);
 
 	// Reference to the Input component
@@ -38,24 +38,24 @@ export default function IngredientItem(props) {
 				<InputLeftElement
 					pointerEvents='none'
 				>
-					{props.ingredientNum}.
+					{props.stepNum}.
 				</InputLeftElement>
 				<Input
 					ref={inputRef}
 					type='text'
-					placeholder='Enter ingredient...'
-					value={recipeState.ingredients[props.ingredientNum - 1]}
+					placeholder='Enter recipe step...'
+					value={recipeState.recipeSteps[props.stepNum - 1]}
 					onChange={
 						(e) =>
-							onIngredientStepChange(props.ingredientNum, e.target.value)
+							onRecipeStepChange(props.stepNum, e.target.value)
 					}
 				/>
 			</InputGroup>
 			<FaTrash
 				className='drawer-section-button'
-				aria-label='Delete ingredient'
+				aria-label='Delete recipe step'
 				size={buttonSize}
-				onClick={() => deleteIngredientStep(props.ingredientNum)}
+				onClick={() => deleteRecipeStep(props.stepNum)}
 			/>
 		</HStack>
 	);

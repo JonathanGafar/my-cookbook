@@ -56,7 +56,6 @@ export default function DescriptionDrawerSection(props) {
 			{recipeState.description !== undefined && <Textarea
 				placeholder='Write a description...'
 				resize='none'
-				mb='1rem'
 				autoFocus
 				onChange={(e) => addDescription(e.target.value)}
 				value={recipeState.description}

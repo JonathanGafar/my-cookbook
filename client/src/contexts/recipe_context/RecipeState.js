@@ -4,7 +4,8 @@ import recipeReducer from './RecipeReducer';
 
 export default function RecipeState(props) {
 	const initialState = {
-		ingredients: []
+		ingredients: [],
+		recipeSteps: []
 	};
 
 	const [recipeState, dispatch] = useReducer(recipeReducer, initialState);
@@ -39,12 +40,47 @@ export default function RecipeState(props) {
 		});
 	}
 
+	function deleteIngredientStep(ingredientNum) {
+		dispatch({
+			type: 'deleteIngredientStep',
+			payload: ingredientNum
+		});
+	}
+
+	function addRecipeStep(step) {
+		dispatch({
+			type: 'addRecipeStep',
+			payload: step
+		});
+	}
+
+	function onRecipeStepChange(stepNum, step) {
+		dispatch({
+			type: 'onRecipeStepChange',
+			payload: {
+				stepNum,
+				step
+			}
+		});
+	}
+
+	function deleteRecipeStep(stepNum) {
+		dispatch({
+			type: 'deleteRecipeStep',
+			payload: stepNum
+		});
+	}
+
 	const contextValues = {
 		recipeState,
 		addDescription,
 		deleteDescription,
 		addIngredientStep,
-		onIngredientStepChange
+		onIngredientStepChange,
+		deleteIngredientStep,
+		addRecipeStep,
+		onRecipeStepChange,
+		deleteRecipeStep
 	};
 
 	return (

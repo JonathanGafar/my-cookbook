@@ -11,11 +11,10 @@ import {FaEdit} from 'react-icons/fa';
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
-import IngredientItem from './IngredientItem';
 import recipeContext from '../../contexts/recipe_context/RecipeContext';
 
-export default function IngredientsDrawerSection(props) {
-	const {recipeState, addIngredientStep} = useContext(recipeContext);
+export default function PhotoDrawerSection(props) {
+	const {recipeState} = useContext(recipeContext);
 
 	// The size of the button depends on the screen size
 	const buttonSize = useBreakpointValue({
@@ -30,15 +29,15 @@ export default function IngredientsDrawerSection(props) {
 					fontSize={{base: 'lg', md: 'xl'}}
 					fontWeight='600'
 				>
-					Ingredients
+					Photos
 				</Text>
 				<Spacer />
 				<HStack spacing='1rem'>
 					<FaEdit
 						className='drawer-section-button'
-						aria-label='Create an ingredient'
+						aria-label='Add a photo'
 						size={buttonSize}
-						onClick={() => addIngredientStep('')}
+						// onClick={() => addIngredientStep('')}
 					/>
 
 					{/* Dummy icon that is hidden to create proper spacing */}
@@ -48,9 +47,9 @@ export default function IngredientsDrawerSection(props) {
 					/>
 				</HStack>
 			</HStack>
-			{recipeState.ingredients.map((ingredient, index) => {
+			{/* {recipeState.ingredients.map((ingredient, index) => {
 				return <IngredientItem ingredientNum={index + 1} key={index} />;
-			})}
+			})} */}
 		</>
 	);
 }
