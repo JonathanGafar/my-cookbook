@@ -47,6 +47,8 @@ export default function IngredientsDrawerSection(props) {
 				</Text>
 				<Spacer />
 				<HStack spacing='1rem'>
+					{/* Have the add ingredient button in line with the Ingredient heading
+					if there are currently no ingredients */}
 					{numIngredients === 0 &&
 					<FaEdit
 						className='drawer-section-button'
@@ -63,6 +65,8 @@ export default function IngredientsDrawerSection(props) {
 				</HStack>
 			</HStack>
 			{childComponentArray}
+			{/* Move the add ingredient button below the last added ingredient
+			so that the user does not have to scroll back up to click the button again */}
 			{numIngredients > 0 &&
 			<HStack w='97.5%'>
 				<Spacer />
