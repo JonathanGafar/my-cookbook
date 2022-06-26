@@ -17,10 +17,8 @@ export default function IngredientItem(props) {
 	const ingredient = useSelector(state => state.ingredients.ingredients[props.ingredientNum - 1]);
 	const dispatch = useDispatch();
 
-	// Reference to the Input component
 	const inputRef = useRef();
 
-	// Focuses the Input component text box upon its creation
 	useEffect(() => {
 		inputRef.current.scrollIntoView({behaviour: 'smooth'});
 		inputRef.current.focus();
