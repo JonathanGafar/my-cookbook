@@ -13,7 +13,7 @@ import {useSelector, useDispatch} from 'react-redux';
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
 import IngredientItem from './IngredientItem';
-import {addIngredientStep} from '../../redux/ingredientSlice';
+import {addIngredient} from '../../redux/ingredientsSlice';
 
 export default function IngredientsDrawerSection(props) {
 	const numIngredients = useSelector(state => state.ingredients.ingredients.length);
@@ -29,12 +29,6 @@ export default function IngredientsDrawerSection(props) {
 			/>
 		);
 	}
-
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '1rem',
-		md: '1.2rem'
-	});
 
 	return (
 		<>
@@ -53,14 +47,14 @@ export default function IngredientsDrawerSection(props) {
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create an ingredient'
-						size={buttonSize}
-						onClick={() => dispatch(addIngredientStep())}
+						size='1.2rem'
+						onClick={() => dispatch(addIngredient())}
 					/>}
 
 					{/* Dummy icon that is hidden to create proper spacing */}
 					<FaEdit
 						style={{visibility: 'hidden'}}
-						size={buttonSize}
+						size='1.2rem'
 					/>
 				</HStack>
 			</HStack>
@@ -73,8 +67,8 @@ export default function IngredientsDrawerSection(props) {
 				<FaEdit
 					className='drawer-section-button'
 					aria-label='Create an ingredient'
-					size={buttonSize}
-					onClick={() => dispatch(addIngredientStep())}
+					size='1.2rem'
+					onClick={() => dispatch(addIngredient())}
 				/>
 			</HStack>
 			}

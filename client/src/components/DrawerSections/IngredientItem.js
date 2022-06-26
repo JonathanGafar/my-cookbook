@@ -10,25 +10,24 @@ import {
 import {FaTrash} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {onIngredientStepChange, deleteIngredientStep} from
-	'../../redux/ingredientSlice';
+import {
+	onIngredientChange,
+	deleteIngredient
+} from '../../redux/ingredientsSlice';
 
 export default function IngredientItem(props) {
-	const ingredient = useSelector(state => state.ingredients.ingredients[props.ingredientNum - 1]);
+	const ingredient = useSelector(
+		state => state.ingredients.ingredients[props.ingredientNum - 1]
+	);
+
 	const dispatch = useDispatch();
 
 	const inputRef = useRef();
 
 	useEffect(() => {
-		inputRef.current.scrollIntoView({behaviour: 'smooth'});
+		inputRef.current.scrollIntoView({behavior: 'smooth'});
 		inputRef.current.focus();
 	}, []);
-
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '0.8rem',
-		md: '1rem'
-	});
 
 	return (
 		<HStack mb='0.5rem' >
@@ -44,7 +43,7 @@ export default function IngredientItem(props) {
 					type='text'
 					placeholder='Enter ingredient...'
 					value={ingredient}
-					onChange={(e) => dispatch(onIngredientStepChange({
+					onChange={(e) => dispatch(onIngredientChange({
 						ingredientNum: props.ingredientNum,
 						ingredient: e.target.value
 					}))}
@@ -53,8 +52,8 @@ export default function IngredientItem(props) {
 			<FaTrash
 				className='drawer-section-button'
 				aria-label='Delete ingredient'
-				size={buttonSize}
-				onClick={() => dispatch(deleteIngredientStep(props.ingredientNum - 1))}
+				size='1rem'
+				onClick={() => dispatch(deleteIngredient(props.ingredientNum - 1))}
 			/>
 		</HStack>
 	);

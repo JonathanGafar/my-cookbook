@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import descriptionReducer from './descriptionSlice';
-import ingredientsReducer from './ingredientSlice';
+import ingredientsReducer from './ingredientsSlice';
+import recipeStepsReducer from './recipeStepsSlice';
 
 export default configureStore({
 	reducer: {
 		description: descriptionReducer,
-		ingredients: ingredientsReducer
+		ingredients: ingredientsReducer,
+		recipeSteps: recipeStepsReducer
 	}
 });

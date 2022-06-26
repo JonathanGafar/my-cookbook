@@ -7,21 +7,28 @@ import {
 } from '@chakra-ui/react';
 
 import {FaEdit} from 'react-icons/fa';
+import {useSelector, useDispatch} from 'react-redux';
 
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
-import recipeContext from '../../contexts/recipe_context/RecipeContext';
 import RecipeStepItem from './RecipeStepItem';
+import {addRecipeStep} from '../../redux/recipeStepsSlice';
 
 export default function RecipeStepDrawerSection(props) {
-	const {recipeState, addRecipeStep} = useContext(recipeContext);
+	const numSteps = useSelector(state => state.recipeSteps.recipeSteps.length);
+	const dispatch = useDispatch();
 
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '1rem',
-		md: '1.2rem'
-	});
+	const childComponentArray = [];
+	for (let i = 0; i < numSteps; ++i) {
+		childComponentArray.push(
+			<RecipeStepItem
+				id={`step-${i + 1}`}
+				stepNum={i + 1}
+				key={i}
+			/>
+		);
+	}
 
 	return (
 		<>
@@ -34,23 +41,36 @@ export default function RecipeStepDrawerSection(props) {
 				</Text>
 				<Spacer />
 				<HStack spacing='1rem'>
+					{/* Have the add ingredient button in line with the Ingredient heading
+					if there are currently no ingredients */}
+					{numSteps === 0 &&
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create a recipe step'
-						size={buttonSize}
-						onClick={() => addRecipeStep('')}
-					/>
-
+						size='1.2rem'
+						onClick={() => dispatch(addRecipeStep())}
+					/>}
 					{/* Dummy icon that is hidden to create proper spacing */}
 					<FaEdit
 						style={{visibility: 'hidden'}}
-						size={buttonSize}
+						size='1.2rem'
 					/>
 				</HStack>
 			</HStack>
-			{recipeState.recipeSteps.map((step, index) => {
-				return <RecipeStepItem stepNum={index + 1} key={index} />;
-			})}
+			{childComponentArray}
+			{/* Move the add ingredient button below the last added ingredient
+			so that the user does not have to scroll back up to click the button again */}
+			{numSteps > 0 &&
+			<HStack w='97.5%'>
+				<Spacer />
+				<FaEdit
+					className='drawer-section-button'
+					aria-label='Create a recipe step'
+					size='1.2rem'
+					onClick={() => dispatch(addRecipeStep())}
+				/>
+			</HStack>
+			}
 		</>
 	);
 }

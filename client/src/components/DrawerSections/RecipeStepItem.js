@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
 	HStack,
 	InputGroup,
@@ -8,29 +8,24 @@ import {
 } from '@chakra-ui/react';
 
 import {FaTrash} from 'react-icons/fa';
+import {useSelector, useDispatch} from 'react-redux';
 
-import RecipeContext from '../../contexts/recipe_context/RecipeContext';
+import {onRecipeStepChange, deleteRecipeStep} from '../../redux/recipeStepsSlice';
 
 export default function RecipeStepItem(props) {
-	const {
-		recipeState,
-		onRecipeStepChange,
-		deleteRecipeStep
-	} = useContext(RecipeContext);
+	const recipeStep = useSelector(
+		state => state.recipeSteps.recipeSteps[props.stepNum - 1]
+	);
+	const dispatch = useDispatch();
 
 	// Reference to the Input component
 	const inputRef = useRef();
 
 	// Focuses the Input component text box upon its creation
 	useEffect(() => {
+		inputRef.current.scrollIntoView({behavior: 'smooth'});
 		inputRef.current.focus();
 	}, []);
-
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '0.8rem',
-		md: '1rem'
-	});
 
 	return (
 		<HStack mb='0.5rem' >
@@ -44,18 +39,21 @@ export default function RecipeStepItem(props) {
 					ref={inputRef}
 					type='text'
 					placeholder='Enter recipe step...'
-					value={recipeState.recipeSteps[props.stepNum - 1]}
+					value={recipeStep}
 					onChange={
 						(e) =>
-							onRecipeStepChange(props.stepNum, e.target.value)
+							dispatch(onRecipeStepChange({
+								stepNum: props.stepNum,
+								step: e.target.value
+							}))
 					}
 				/>
 			</InputGroup>
 			<FaTrash
 				className='drawer-section-button'
 				aria-label='Delete recipe step'
-				size={buttonSize}
-				onClick={() => deleteRecipeStep(props.stepNum)}
+				size='1rem'
+				onClick={() => dispatch(deleteRecipeStep(props.stepNum - 1))}
 			/>
 		</HStack>
 	);

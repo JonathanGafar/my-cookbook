@@ -6,23 +6,23 @@ export const ingredientsSlice = createSlice({
 		ingredients: []
 	},
 	reducers: {
-		addIngredientStep: (state, action) => {
+		addIngredient: (state) => {
 			state.ingredients.push('');
 		},
-		onIngredientStepChange: (state, action) => {
+		onIngredientChange: (state, action) => {
 			state.ingredients[action.payload.ingredientNum - 1] =
                 action.payload.ingredient;
 		},
-		deleteIngredientStep: (state, action) => {
+		deleteIngredient: (state, action) => {
 			state.ingredients.splice(action.payload, 1);
 		}
 	}
 });
 
 export const {
-	addIngredientStep,
-	onIngredientStepChange,
-	deleteIngredientStep
+	addIngredient,
+	onIngredientChange,
+	deleteIngredient
 } = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer;

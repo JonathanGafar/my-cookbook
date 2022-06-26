@@ -19,12 +19,6 @@ export default function DescriptionDrawerSection(props) {
 	const description = useSelector(state => state.description.description);
 	const dispatch = useDispatch();
 
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '1rem',
-		md: '1.2rem'
-	});
-
 	return (
 		<>
 			<HStack spacing='0.8rem' mb='1rem'>
@@ -39,12 +33,12 @@ export default function DescriptionDrawerSection(props) {
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create or edit description'
-						size={buttonSize}
+						size='1.2rem'
 						onClick={() => dispatch(addDescription(''))}
 					/>
 					<FaTrash
 						className='drawer-section-button'
-						size={buttonSize}
+						size='1.2rem'
 						aria-label='Delete description'
 						onClick={() => dispatch(deleteDescription())}
 					/>
