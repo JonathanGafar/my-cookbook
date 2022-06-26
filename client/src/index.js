@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {ChakraProvider} from '@chakra-ui/react';
 import {BrowserRouter} from 'react-router-dom';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import {Provider} from 'react-redux';
 
 import theme from './theme/theme';
+import store from './redux/store';
 
 // React Query object that allows interaction with the cache
 const queryClient = new QueryClient();
@@ -18,7 +20,9 @@ root.render(
 		<QueryClientProvider client={queryClient}>
 			<ChakraProvider theme={theme}>
 				<BrowserRouter>
-					<App />
+					<Provider store={store}>
+						<App />
+					</Provider>
 				</BrowserRouter>
 			</ChakraProvider>
 		</QueryClientProvider>

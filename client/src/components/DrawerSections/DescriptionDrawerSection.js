@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
 	HStack,
 	Spacer,
@@ -8,19 +8,16 @@ import {
 } from '@chakra-ui/react';
 
 import {FaEdit, FaTrash} from 'react-icons/fa';
-
-import RecipeContext from '../../contexts/recipe_context/RecipeContext';
+import {useSelector, useDispatch} from 'react-redux';
 
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
+import {addDescription, deleteDescription} from '../../redux/descriptionSlice';
 
 export default function DescriptionDrawerSection(props) {
-	const {
-		recipeState,
-		addDescription,
-		deleteDescription
-	} = useContext(RecipeContext);
+	const description = useSelector(state => state.description.description);
+	const dispatch = useDispatch();
 
 	// The size of the button depends on the screen size
 	const buttonSize = useBreakpointValue({
@@ -43,22 +40,22 @@ export default function DescriptionDrawerSection(props) {
 						className='drawer-section-button'
 						aria-label='Create or edit description'
 						size={buttonSize}
-						onClick={() => addDescription('')}
+						onClick={() => dispatch(addDescription(''))}
 					/>
 					<FaTrash
 						className='drawer-section-button'
 						size={buttonSize}
 						aria-label='Delete description'
-						onClick={deleteDescription}
+						onClick={() => dispatch(deleteDescription())}
 					/>
 				</HStack>
 			</HStack>
-			{recipeState.description !== undefined && <Textarea
+			{description !== null && <Textarea
 				placeholder='Write a description...'
 				resize='none'
 				autoFocus
-				onChange={(e) => addDescription(e.target.value)}
-				value={recipeState.description}
+				onChange={(e) => dispatch(addDescription(e.target.value))}
+				value={description}
 			/>}
 		</>
 	);

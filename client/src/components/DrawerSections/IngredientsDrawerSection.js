@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
 	HStack,
 	Spacer,
@@ -7,15 +7,28 @@ import {
 } from '@chakra-ui/react';
 
 import {FaEdit} from 'react-icons/fa';
+import {useSelector, useDispatch} from 'react-redux';
 
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
 import IngredientItem from './IngredientItem';
-import recipeContext from '../../contexts/recipe_context/RecipeContext';
+import {addIngredientStep} from '../../redux/ingredientSlice';
 
 export default function IngredientsDrawerSection(props) {
-	const {recipeState, addIngredientStep} = useContext(recipeContext);
+	const numIngredients = useSelector(state => state.ingredients.ingredients.length);
+	const dispatch = useDispatch();
+
+	const childComponentArray = [];
+	for (let i = 0; i < numIngredients; ++i) {
+		childComponentArray.push(
+			<IngredientItem
+				id={`ingredient-${i + 1}`}
+				ingredientNum={i + 1}
+				key={i}
+			/>
+		);
+	}
 
 	// The size of the button depends on the screen size
 	const buttonSize = useBreakpointValue({
@@ -34,12 +47,13 @@ export default function IngredientsDrawerSection(props) {
 				</Text>
 				<Spacer />
 				<HStack spacing='1rem'>
+					{numIngredients === 0 &&
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create an ingredient'
 						size={buttonSize}
-						onClick={() => addIngredientStep('')}
-					/>
+						onClick={() => dispatch(addIngredientStep())}
+					/>}
 
 					{/* Dummy icon that is hidden to create proper spacing */}
 					<FaEdit
@@ -48,9 +62,18 @@ export default function IngredientsDrawerSection(props) {
 					/>
 				</HStack>
 			</HStack>
-			{recipeState.ingredients.map((ingredient, index) => {
-				return <IngredientItem ingredientNum={index + 1} key={index} />;
-			})}
+			{childComponentArray}
+			{numIngredients > 0 &&
+			<HStack w='97.5%'>
+				<Spacer />
+				<FaEdit
+					className='drawer-section-button'
+					aria-label='Create an ingredient'
+					size={buttonSize}
+					onClick={() => dispatch(addIngredientStep())}
+				/>
+			</HStack>
+			}
 		</>
 	);
 }

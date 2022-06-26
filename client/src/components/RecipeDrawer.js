@@ -26,7 +26,7 @@ export default function RecipeDrawer(props) {
 			<DrawerOverlay />
 			<DrawerContent
 				w={{base: '100%', smd: '90%'}}
-				h='auto'
+				h='80%'
 				mx='auto'
 			>
 				<DrawerCloseButton _focus={{borderColor: 'none'}} />
@@ -37,8 +37,8 @@ export default function RecipeDrawer(props) {
 				</DrawerHeader>
 
 				<DrawerBody>
-					<DescriptionDrawerSection/>
-					<IngredientsDrawerSection/>
+					<DescriptionDrawerSection />
+					<IngredientsDrawerSection />
 					<RecipeStepDrawerSection />
 					<PhotoDrawerSection />
 					{/* <DrawerSection name='Privacy' /> */}

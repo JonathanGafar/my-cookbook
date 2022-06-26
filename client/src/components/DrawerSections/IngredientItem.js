@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
 	HStack,
 	InputGroup,
@@ -8,21 +8,21 @@ import {
 } from '@chakra-ui/react';
 
 import {FaTrash} from 'react-icons/fa';
+import {useSelector, useDispatch} from 'react-redux';
 
-import RecipeContext from '../../contexts/recipe_context/RecipeContext';
+import {onIngredientStepChange, deleteIngredientStep} from
+	'../../redux/ingredientSlice';
 
 export default function IngredientItem(props) {
-	const {
-		recipeState,
-		onIngredientStepChange,
-		deleteIngredientStep
-	} = useContext(RecipeContext);
+	const ingredient = useSelector(state => state.ingredients.ingredients[props.ingredientNum - 1]);
+	const dispatch = useDispatch();
 
 	// Reference to the Input component
 	const inputRef = useRef();
 
 	// Focuses the Input component text box upon its creation
 	useEffect(() => {
+		inputRef.current.scrollIntoView({behaviour: 'smooth'});
 		inputRef.current.focus();
 	}, []);
 
@@ -34,28 +34,29 @@ export default function IngredientItem(props) {
 
 	return (
 		<HStack mb='0.5rem' >
-			<InputGroup>
+			<InputGroup w='100%'>
 				<InputLeftElement
 					pointerEvents='none'
 				>
 					{props.ingredientNum}.
 				</InputLeftElement>
 				<Input
+					id={props.id}
 					ref={inputRef}
 					type='text'
 					placeholder='Enter ingredient...'
-					value={recipeState.ingredients[props.ingredientNum - 1]}
-					onChange={
-						(e) =>
-							onIngredientStepChange(props.ingredientNum, e.target.value)
-					}
+					value={ingredient}
+					onChange={(e) => dispatch(onIngredientStepChange({
+						ingredientNum: props.ingredientNum,
+						ingredient: e.target.value
+					}))}
 				/>
 			</InputGroup>
 			<FaTrash
 				className='drawer-section-button'
 				aria-label='Delete ingredient'
 				size={buttonSize}
-				onClick={() => deleteIngredientStep(props.ingredientNum)}
+				onClick={() => dispatch(deleteIngredientStep(props.ingredientNum - 1))}
 			/>
 		</HStack>
 	);
