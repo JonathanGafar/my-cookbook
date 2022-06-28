@@ -29,8 +29,7 @@ const buttonBaseTheme = {
 	},
 	defaultProps: {
 		size: {
-			base: 'sm',
-			md: 'md'
+			base: 'md'
 		}
 	}
 };
