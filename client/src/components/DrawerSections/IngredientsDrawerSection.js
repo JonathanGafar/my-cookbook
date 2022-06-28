@@ -11,6 +11,7 @@ import {useSelector, useDispatch} from 'react-redux';
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
+
 import IngredientItem from './IngredientItem';
 import {addIngredient} from '../../redux/ingredientsSlice';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
 	Wrap,
 	WrapItem,
@@ -83,7 +83,7 @@ export default function RecipeDrawer(props) {
 								<RecipeStepDrawerSection />
 							</TabPanel>
 							<TabPanel>
-								<PhotoDrawerSection />
+								{/* <PhotoDrawerSection /> */}
 							</TabPanel>
 						</TabPanels>
 					</Tabs>
