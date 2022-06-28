@@ -17,14 +17,8 @@ import './DrawerSectionStyles.css';
 import {addDescription, deleteDescription} from '../../redux/descriptionSlice';
 
 export default function DescriptionDrawerSection(props) {
-	const state = useSelector(state => state.description);
+	const description = useSelector(state => state.description.description);
 	const dispatch = useDispatch();
-
-	// The size of the button depends on the screen size
-	const buttonSize = useBreakpointValue({
-		base: '1rem',
-		md: '1.2rem'
-	});
 
 	return (
 		<>
@@ -36,36 +30,35 @@ export default function DescriptionDrawerSection(props) {
 				bg='white'
 				top='-0.5rem'
 				position='sticky'
-				zIndex='201'
+				zIndex='200'
 			>
 				<Text
-					fontSize={{base: 'lg', md: 'xl'}}
+					fontSize={{base: 'md', md: 'lg'}}
 					fontWeight='600'
 				>
 					Description
 				</Text>
-				<Spacer />
 				<HStack spacing='1rem'>
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create or edit description'
-						size={buttonSize}
+						size='1.2rem'
 						onClick={() => dispatch(addDescription(''))}
 					/>
 					<FaTrash
 						className='drawer-section-button'
-						size={buttonSize}
+						size='1.2rem'
 						aria-label='Delete description'
 						onClick={() => dispatch(deleteDescription())}
 					/>
 				</HStack>
 			</HStack>
-			{state.description !== null && <Textarea
+			{description !== null && <Textarea
 				placeholder='Write a description...'
 				resize='none'
 				autoFocus
 				onChange={(e) => dispatch(addDescription(e.target.value))}
-				value={state.description}
+				value={description}
 			/>}
 		</>
 	);
