@@ -32,24 +32,31 @@ export default function RecipeStepDrawerSection(props) {
 
 	return (
 		<>
-			<HStack spacing='0.8rem' mt='3rem' mb='1rem'>
+			<HStack
+				spacing='0.8rem'
+				mb='1rem'
+				h='4rem'
+				w='100%'
+				bg='white'
+				top='-0.5rem'
+				position='sticky'
+				zIndex='200'
+			>
 				<Text
-					fontSize={{base: 'lg', md: 'xl'}}
+					fontSize={{base: 'md', md: 'lg'}}
 					fontWeight='600'
 				>
 					Recipe steps
 				</Text>
-				<Spacer />
 				<HStack spacing='1rem'>
 					{/* Have the add ingredient button in line with the Ingredient heading
 					if there are currently no ingredients */}
-					{numSteps === 0 &&
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create a recipe step'
 						size='1.2rem'
 						onClick={() => dispatch(addRecipeStep())}
-					/>}
+					/>
 					{/* Dummy icon that is hidden to create proper spacing */}
 					<FaEdit
 						style={{visibility: 'hidden'}}
@@ -58,19 +65,6 @@ export default function RecipeStepDrawerSection(props) {
 				</HStack>
 			</HStack>
 			{childComponentArray}
-			{/* Move the add ingredient button below the last added ingredient
-			so that the user does not have to scroll back up to click the button again */}
-			{numSteps > 0 &&
-			<HStack w='97.5%'>
-				<Spacer />
-				<FaEdit
-					className='drawer-section-button'
-					aria-label='Create a recipe step'
-					size='1.2rem'
-					onClick={() => dispatch(addRecipeStep())}
-				/>
-			</HStack>
-			}
 		</>
 	);
 }

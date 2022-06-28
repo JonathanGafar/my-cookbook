@@ -24,14 +24,22 @@ export default function PhotoDrawerSection(props) {
 
 	return (
 		<>
-			<HStack spacing='0.8rem' mt='3rem' mb='1rem'>
+			<HStack
+				spacing='0.8rem'
+				mb='1rem'
+				h='4rem'
+				w='100%'
+				bg='white'
+				top='-0.5rem'
+				position='sticky'
+				zIndex='200'
+			>
 				<Text
-					fontSize={{base: 'lg', md: 'xl'}}
+					fontSize={{base: 'md', md: 'lg', lg: 'xl'}}
 					fontWeight='600'
 				>
 					Photos
 				</Text>
-				<Spacer />
 				<HStack spacing='1rem'>
 					<FaEdit
 						className='drawer-section-button'
