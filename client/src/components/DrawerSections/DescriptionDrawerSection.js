@@ -29,7 +29,7 @@ export default function DescriptionDrawerSection(props) {
 				bg='white'
 				top='-0.5rem'
 				position='sticky'
-				zIndex='200'
+				zIndex='201'
 			>
 				<Text
 					fontSize={{base: 'md', md: 'lg'}}
