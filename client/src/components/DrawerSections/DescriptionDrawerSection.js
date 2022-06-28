@@ -1,10 +1,8 @@
 import React from 'react';
 import {
 	HStack,
-	Spacer,
 	Text,
-	Textarea,
-	useBreakpointValue
+	Textarea
 } from '@chakra-ui/react';
 
 import {FaEdit, FaTrash} from 'react-icons/fa';
@@ -13,6 +11,7 @@ import {useSelector, useDispatch} from 'react-redux';
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
+
 import {addDescription, deleteDescription} from '../../redux/descriptionSlice';
 
 export default function DescriptionDrawerSection(props) {
@@ -53,9 +52,9 @@ export default function DescriptionDrawerSection(props) {
 				</HStack>
 			</HStack>
 			{description !== null && <Textarea
-				autoFocus
 				placeholder='Write a description...'
 				resize='none'
+				autoFocus
 				onChange={(e) => dispatch(addDescription(e.target.value))}
 				value={description}
 			/>}
