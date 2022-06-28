@@ -1,10 +1,8 @@
 import React from 'react';
 import {
 	HStack,
-	Spacer,
 	Text,
-	Textarea,
-	useBreakpointValue
+	Textarea
 } from '@chakra-ui/react';
 
 import {FaEdit, FaTrash} from 'react-icons/fa';
