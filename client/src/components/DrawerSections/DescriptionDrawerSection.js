@@ -28,7 +28,16 @@ export default function DescriptionDrawerSection(props) {
 
 	return (
 		<>
-			<HStack spacing='0.8rem' mb='1rem'>
+			<HStack
+				spacing='0.8rem'
+				mb='1rem'
+				h='4rem'
+				w='100%'
+				bg='white'
+				top='-0.5rem'
+				position='sticky'
+				zIndex='201'
+			>
 				<Text
 					fontSize={{base: 'lg', md: 'xl'}}
 					fontWeight='600'
