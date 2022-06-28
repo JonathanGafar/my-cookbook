@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
-	Box,
 	HStack,
-	Text
+	Spacer,
+	Text,
+	useBreakpointValue
 } from '@chakra-ui/react';
 
 import {FaEdit} from 'react-icons/fa';
@@ -11,20 +12,19 @@ import {useSelector, useDispatch} from 'react-redux';
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
+import RecipeStepItem from './RecipeStepItem';
+import {addRecipeStep} from '../../redux/recipeStepsSlice';
 
-import IngredientItem from './IngredientItem';
-import {addIngredient} from '../../redux/ingredientsSlice';
-
-export default function IngredientsDrawerSection(props) {
-	const numIngredients = useSelector(state => state.ingredients.ingredients.length);
+export default function RecipeStepDrawerSection(props) {
+	const numSteps = useSelector(state => state.recipeSteps.recipeSteps.length);
 	const dispatch = useDispatch();
 
 	const childComponentArray = [];
-	for (let i = 0; i < numIngredients; ++i) {
+	for (let i = 0; i < numSteps; ++i) {
 		childComponentArray.push(
-			<IngredientItem
-				id={`ingredient-${i + 1}`}
-				ingredientNum={i + 1}
+			<RecipeStepItem
+				id={`step-${i + 1}`}
+				stepNum={i + 1}
 				key={i}
 			/>
 		);
@@ -46,14 +46,16 @@ export default function IngredientsDrawerSection(props) {
 					fontSize={{base: 'md', md: 'lg'}}
 					fontWeight='600'
 				>
-					Ingredients
+					Recipe steps
 				</Text>
 				<HStack spacing='1rem'>
+					{/* Have the add ingredient button in line with the Ingredient heading
+					if there are currently no ingredients */}
 					<FaEdit
 						className='drawer-section-button'
-						aria-label='Create an ingredient'
+						aria-label='Create a recipe step'
 						size='1.2rem'
-						onClick={() => dispatch(addIngredient())}
+						onClick={() => dispatch(addRecipeStep())}
 					/>
 					{/* Dummy icon that is hidden to create proper spacing */}
 					<FaEdit

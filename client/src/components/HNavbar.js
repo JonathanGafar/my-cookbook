@@ -7,9 +7,9 @@ import {
 } from '@chakra-ui/react';
 
 import LogoTransparent from '../assets/logo_transparent.png';
-import AddRecipeButton from '../singles/AddRecipeButton';
-import ProfileSettingsButton from '../singles/ProfileSettingsButton';
-import NotificationsButton from '../singles/NotificationsButton';
+import AddRecipeButton from './AddRecipeButton';
+import ProfileSettingsButton from './ProfileSettingsButton';
+import NotificationsButton from './NotificationsButton';
 
 export default function HNavbar() {
 	/* Detects the screen size and sets screenSize to be equal to its alias.
@@ -28,7 +28,10 @@ export default function HNavbar() {
 			w='100%'
 			bgGradient='linear(to-b, #037888, #0bbed6)'
 		>
-			<Image src={LogoTransparent} boxSize={{base: '15rem', smd: '16rem', md: '18.75rem'}} />
+			<Image
+				src={LogoTransparent}
+				boxSize={{base: '15rem', smd: '16rem', md: '18.75rem'}}
+			/>
 			{screenSize !== 'small' ? <NavButtonGroup /> : null}
 		</HStack>
 	);
@@ -52,11 +55,11 @@ function NavButtonGroup(props) {
 			{...commonNavButtonProps}
 			right='7rem'
 		/>
-		<ProfileSettingsButton
+		<NotificationsButton
 			{...commonNavButtonProps}
 			right='4rem'
 		/>
-		<NotificationsButton
+		<ProfileSettingsButton
 			{...commonNavButtonProps}
 			right='1rem'
 		/>

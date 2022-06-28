@@ -1,7 +1,7 @@
 import React from 'react';
 import {VStack, Button, Box, Link, Input, useMediaQuery} from '@chakra-ui/react';
 
-import HNavbar from '../shared/HNavbar';
+import HNavbar from '../components/HNavbar';
 
 export default function Login() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery

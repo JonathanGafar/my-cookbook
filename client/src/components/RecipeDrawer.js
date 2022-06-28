@@ -1,5 +1,7 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
+	Wrap,
+	WrapItem,
 	Drawer,
 	DrawerBody,
 	DrawerContent,
@@ -7,6 +9,11 @@ import {
 	DrawerCloseButton,
 	DrawerFooter,
 	DrawerHeader,
+	Tabs,
+	TabList,
+	Tab,
+	TabPanels,
+	TabPanel,
 	Button
 } from '@chakra-ui/react';
 
@@ -16,27 +23,30 @@ import RecipeStepDrawerSection from './DrawerSections/RecipeStepDrawerSection';
 import PhotoDrawerSection from './DrawerSections/PhotoDrawerSection';
 
 export default function RecipeDrawer(props) {
-	const closeBtnRef = useRef();
-
-	function onDrawerClose() {
-		closeBtnRef.current.focus();
-		props.onClose();
-	}
+	const commonTabProps = {
+		fontSize: {
+			base: 'lg',
+			md: 'xl'
+		},
+		_focus: {
+			boxShadow: 'none'
+		}
+	};
 
 	return (
 		<Drawer
 			isOpen={props.isOpen}
 			placement='top'
-			onClose={onDrawerClose}
+			onClose={props.onClose}
 			size='lg'
 		>
 			<DrawerOverlay />
 			<DrawerContent
 				w={{base: '100%', smd: '90%'}}
-				h='auto'
+				h='80%'
 				mx='auto'
 			>
-				<DrawerCloseButton ref={closeBtnRef} _focus={{borderColor: 'none'}} />
+				<DrawerCloseButton _focus={{borderColor: 'none'}} />
 				<DrawerHeader
 					fontSize={{base: '2xl', md: '3xl'}}
 				>
@@ -44,12 +54,39 @@ export default function RecipeDrawer(props) {
 				</DrawerHeader>
 
 				<DrawerBody>
-					<DescriptionDrawerSection/>
-					<IngredientsDrawerSection/>
-					{/*
-					<RecipeStepDrawerSection />
-					<PhotoDrawerSection /> */}
-					{/* <DrawerSection name='Privacy' /> */}
+					<Tabs variant='soft-rounded' colorScheme='green'>
+						<TabList>
+							<Wrap justify='center'>
+								<WrapItem>
+									<Tab {...commonTabProps}>Description</Tab>
+								</WrapItem>
+								<WrapItem>
+									<Tab {...commonTabProps}>Ingredients</Tab>
+								</WrapItem>
+								<WrapItem>
+									<Tab {...commonTabProps}>Steps</Tab>
+								</WrapItem>
+								<WrapItem>
+									<Tab {...commonTabProps}>Photos</Tab>
+								</WrapItem>
+							</Wrap>
+						</TabList>
+
+						<TabPanels>
+							<TabPanel>
+								<DescriptionDrawerSection />
+							</TabPanel>
+							<TabPanel>
+								<IngredientsDrawerSection />
+							</TabPanel>
+							<TabPanel>
+								<RecipeStepDrawerSection />
+							</TabPanel>
+							<TabPanel>
+								<PhotoDrawerSection />
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
 				</DrawerBody>
 
 				<DrawerFooter>
@@ -58,7 +95,7 @@ export default function RecipeDrawer(props) {
 						mr='1rem'
 						onClick={props.onClose}
 					>
-						Cancel
+						Close
 					</Button>
 					<Button variant='drawerButton'>
 						Save
