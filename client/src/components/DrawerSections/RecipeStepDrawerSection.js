@@ -49,18 +49,11 @@ export default function RecipeStepDrawerSection(props) {
 					Recipe steps
 				</Text>
 				<HStack spacing='1rem'>
-					{/* Have the add ingredient button in line with the Ingredient heading
-					if there are currently no ingredients */}
 					<FaEdit
 						className='drawer-section-button'
 						aria-label='Create a recipe step'
 						size='1.2rem'
 						onClick={() => dispatch(addRecipeStep())}
-					/>
-					{/* Dummy icon that is hidden to create proper spacing */}
-					<FaEdit
-						style={{visibility: 'hidden'}}
-						size='1.2rem'
 					/>
 				</HStack>
 			</HStack>

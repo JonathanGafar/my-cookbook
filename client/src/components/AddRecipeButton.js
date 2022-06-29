@@ -38,8 +38,8 @@ export default function AddRecipeButton(props) {
 				mb={props.mb}
 				aria-label='add recipe'
 				isRound
-				_active={{borderColor: 'none'}}
-				_focus={{borderColor: 'none'}}
+				_active={{boxShadow: 'none'}}
+				_focus= {{boxShadow: 'none'}}
 				onClick={onOpen}
 			/>
 			<RecipeDrawer isOpen={isOpen} onClose={onClose} />

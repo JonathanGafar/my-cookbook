@@ -29,8 +29,8 @@ export default function ProfileSettingsButton(props) {
 				mb={props.mb}
 				aria-label='privacy settings and logout options'
 				isRound
-				_active={{borderColor: 'none'}}
-				_focus={{borderColor: 'none'}}
+				_active={{boxShadow: 'none'}}
+				_focus={{boxShadow: 'none'}}
 			/>
 
 			<MenuList minWidth='15rem'>

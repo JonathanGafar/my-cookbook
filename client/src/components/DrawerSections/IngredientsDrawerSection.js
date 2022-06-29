@@ -54,11 +54,6 @@ export default function IngredientsDrawerSection(props) {
 						size='1.2rem'
 						onClick={() => dispatch(addIngredient())}
 					/>
-					{/* Dummy icon that is hidden to create proper spacing */}
-					<FaEdit
-						style={{visibility: 'hidden'}}
-						size='1.2rem'
-					/>
 				</HStack>
 			</HStack>
 			{childComponentArray}

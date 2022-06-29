@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
 	HStack,
-	Spacer,
-	Text
+	Wrap,
+	Input,
+	Text,
+	Image
 } from '@chakra-ui/react';
 
 import {FaEdit} from 'react-icons/fa';
 
+import PhotoItem from './PhotoItem';
 /* Styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
 import './DrawerSectionStyles.css';
@@ -31,18 +34,13 @@ export default function PhotoDrawerSection(props) {
 					Photos
 				</Text>
 				<HStack spacing='1rem'>
-					<FaEdit
-						className='drawer-section-button'
-						aria-label='Add a photo'
-						size='1.2rem'
-					/>
-					{/* Dummy icon that is hidden to create proper spacing */}
-					<FaEdit
-						style={{visibility: 'hidden'}}
-						size='1.2rem'
-					/>
 				</HStack>
 			</HStack>
+			<Wrap justify={{base: 'center', md: 'flex-start'}} spacing='2rem'>
+				<PhotoItem id='photo1' key='photo1' photoNum={1} />
+				<PhotoItem id='photo2' key='photo2' photoNum={2} />
+				<PhotoItem id='photo3' key='photo3' photoNum={3} />
+			</Wrap>
 		</>
 	);
 }

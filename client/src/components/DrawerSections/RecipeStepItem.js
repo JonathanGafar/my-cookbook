@@ -18,10 +18,8 @@ export default function RecipeStepItem(props) {
 	);
 	const dispatch = useDispatch();
 
-	// Reference to the Input component
 	const inputRef = useRef();
 
-	// Focuses the Input component text box upon its creation
 	useEffect(() => {
 		inputRef.current.scrollIntoView({behavior: 'smooth'});
 		inputRef.current.focus();
