@@ -36,6 +36,7 @@ export default function PhotoItem(props) {
 					boxSize={{base: '8rem', smd: '10rem', lg: '10rem'}}
 					objectFit='cover'
 					mb='0.5rem'
+					borderRadius='xl'
 				/>}
 			{photo &&
 				<Image
@@ -43,6 +44,7 @@ export default function PhotoItem(props) {
 					boxSize={{base: '8rem', smd: '10rem', lg: '10rem'}}
 					objectFit='cover'
 					mb='0.5rem'
+					borderRadius='xl'
 				/>}
 			<HStack spacing='1.5rem'>
 				<BiPhotoAlbum
