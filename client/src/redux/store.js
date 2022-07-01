@@ -1,8 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
-import descriptionReducer from './descriptionSlice';
-import ingredientsReducer from './ingredientsSlice';
-import recipeStepsReducer from './recipeStepsSlice';
-import photosReducer from './photosSlice';
+import descriptionReducer from
+	'../components/DrawerSections/DescriptionSection/descriptionSlice';
+import ingredientsReducer from
+	'../components/DrawerSections/IngredientsSection/ingredientsSlice';
+import recipeStepsReducer from
+	'../components/DrawerSections/RecipeStepsSection/recipeStepsSlice';
+import photosReducer from
+	'../components/DrawerSections/PhotoSection/photosSlice';
 
 export default configureStore({
 	reducer: {

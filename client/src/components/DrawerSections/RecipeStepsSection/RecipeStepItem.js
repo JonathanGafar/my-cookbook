@@ -10,16 +10,12 @@ import {
 import {FaTrash} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {
-	onIngredientChange,
-	deleteIngredient
-} from '../../redux/ingredientsSlice';
+import {onRecipeStepChange, deleteRecipeStep} from './recipeStepsSlice';
 
-export default function IngredientItem(props) {
-	const ingredient = useSelector(
-		state => state.ingredients.ingredients[props.ingredientNum - 1]
+export default function RecipeStepItem(props) {
+	const recipeStep = useSelector(
+		state => state.recipeSteps.recipeSteps[props.stepNum - 1]
 	);
-
 	const dispatch = useDispatch();
 
 	const inputRef = useRef();
@@ -31,29 +27,31 @@ export default function IngredientItem(props) {
 
 	return (
 		<HStack mb='0.5rem' >
-			<InputGroup w='100%'>
+			<InputGroup>
 				<InputLeftElement
 					pointerEvents='none'
 				>
-					{props.ingredientNum}.
+					{props.stepNum}.
 				</InputLeftElement>
 				<Input
-					id={props.id}
 					ref={inputRef}
 					type='text'
-					placeholder='Enter ingredient...'
-					value={ingredient}
-					onChange={(e) => dispatch(onIngredientChange({
-						ingredientNum: props.ingredientNum,
-						ingredient: e.target.value
-					}))}
+					placeholder='Enter recipe step...'
+					value={recipeStep}
+					onChange={
+						(e) =>
+							dispatch(onRecipeStepChange({
+								stepNum: props.stepNum,
+								step: e.target.value
+							}))
+					}
 				/>
 			</InputGroup>
 			<FaTrash
 				className='drawer-section-button'
-				aria-label='Delete ingredient'
+				aria-label='Delete recipe step'
 				size='1rem'
-				onClick={() => dispatch(deleteIngredient(props.ingredientNum - 1))}
+				onClick={() => dispatch(deleteRecipeStep(props.stepNum - 1))}
 			/>
 		</HStack>
 	);

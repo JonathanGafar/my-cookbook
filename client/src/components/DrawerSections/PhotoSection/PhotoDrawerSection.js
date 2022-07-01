@@ -2,17 +2,14 @@ import React, {useRef} from 'react';
 import {
 	HStack,
 	Wrap,
-	Input,
-	Text,
-	Image
+	Text
 } from '@chakra-ui/react';
 
-import {FaEdit} from 'react-icons/fa';
+/* react-icon styling must be done with a .css file instead of Chakra props, as the
+react-icon components cannot be styled with Chakra props. */
+import '../../../assets/DrawerSectionStyles.css';
 
 import PhotoItem from './PhotoItem';
-/* Styling must be done with a .css file instead of Chakra props, as the
-react-icon components cannot be styled with Chakra props. */
-import './DrawerSectionStyles.css';
 
 export default function PhotoDrawerSection(props) {
 	return (

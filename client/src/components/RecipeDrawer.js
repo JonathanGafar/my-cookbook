@@ -17,10 +17,14 @@ import {
 	Button
 } from '@chakra-ui/react';
 
-import DescriptionDrawerSection from './DrawerSections/DescriptionDrawerSection';
-import IngredientsDrawerSection from './DrawerSections/IngredientsDrawerSection';
-import RecipeStepDrawerSection from './DrawerSections/RecipeStepDrawerSection';
-import PhotoDrawerSection from './DrawerSections/PhotoDrawerSection';
+import DescriptionDrawerSection from
+	'./DrawerSections/DescriptionSection/DescriptionDrawerSection';
+import IngredientsDrawerSection from
+	'./DrawerSections/IngredientsSection/IngredientsDrawerSection';
+import RecipeStepDrawerSection from
+	'./DrawerSections/RecipeStepsSection/RecipeStepDrawerSection';
+import PhotoDrawerSection from
+	'./DrawerSections/PhotoSection/PhotoDrawerSection';
 
 export default function RecipeDrawer(props) {
 	const commonTabProps = {

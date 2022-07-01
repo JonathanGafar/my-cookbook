@@ -4,8 +4,8 @@ import {BiPhotoAlbum} from 'react-icons/bi';
 import {FaTrash} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-import emptyPhoto from '../../assets/emptyPhoto.jpg';
-import {addPhoto, deletePhoto} from '../../redux/photosSlice';
+import emptyPhoto from '../../../assets/emptyPhoto.jpg';
+import {addPhoto, deletePhoto} from './photosSlice';
 
 export default function PhotoItem(props) {
 	const photo = useSelector(state => state.photos.photos[props.photoNum]);

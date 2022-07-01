@@ -7,12 +7,12 @@ import {
 import {FaEdit} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-/* Styling must be done with a .css file instead of Chakra props, as the
+/* react-icon styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
-import './DrawerSectionStyles.css';
+import '../../../assets/DrawerSectionStyles.css';
 
 import IngredientItem from './IngredientItem';
-import {addIngredient} from '../../redux/ingredientsSlice';
+import {addIngredient} from './ingredientsSlice';
 
 export default function IngredientsDrawerSection(props) {
 	const numIngredients = useSelector(state => state.ingredients.ingredients.length);

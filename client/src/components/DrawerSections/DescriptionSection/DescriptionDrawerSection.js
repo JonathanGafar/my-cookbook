@@ -8,11 +8,11 @@ import {
 import {FaEdit, FaTrash} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-/* Styling must be done with a .css file instead of Chakra props, as the
+/* react-icon styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
-import './DrawerSectionStyles.css';
+import '../../../assets/DrawerSectionStyles.css';
 
-import {addDescription, deleteDescription} from '../../redux/descriptionSlice';
+import {addDescription, deleteDescription} from './descriptionSlice';
 
 export default function DescriptionDrawerSection(props) {
 	const description = useSelector(state => state.description.description);
