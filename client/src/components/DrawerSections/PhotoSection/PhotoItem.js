@@ -20,6 +20,7 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import emptyPhoto from '../../../assets/emptyPhoto.jpg';
 import {addPhoto, deletePhoto} from './photosSlice';
+import PhotoModal from './PhotoModal';
 
 export default function PhotoItem(props) {
 	const photo = useSelector(state => state.photos.photos[props.photoNum]);
@@ -27,6 +28,11 @@ export default function PhotoItem(props) {
 
 	const toast = useToast();
 	const {isOpen, onOpen, onClose} = useDisclosure();
+	const {
+		isOpen: isOpenPhoto,
+		onOpen: onOpenPhoto,
+		onClose: onClosePhoto
+	} = useDisclosure();
 
 	const photoRef = useRef();
 	const cancelRef = useRef();
@@ -76,7 +82,15 @@ export default function PhotoItem(props) {
 					objectFit='cover'
 					mb='0.5rem'
 					borderRadius='xl'
+					onClick={onOpenPhoto}
+					_hover={{cursor: 'pointer'}}
 				/>}
+			<PhotoModal
+				onOpen={onOpenPhoto}
+				isOpen={isOpenPhoto}
+				onClose={onClosePhoto}
+				photo={photo}
+			/>
 			<HStack spacing='1.5rem'>
 				<BiPhotoAlbum
 					className='drawer-section-button'
