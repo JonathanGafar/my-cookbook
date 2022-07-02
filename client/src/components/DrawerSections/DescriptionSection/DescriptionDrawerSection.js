@@ -18,6 +18,11 @@ export default function DescriptionDrawerSection(props) {
 	const description = useSelector(state => state.description.description);
 	const dispatch = useDispatch();
 
+	// Put cursor at end of text when the textArea component autofocuses
+	function handleOnSelect(e) {
+		e.target.selectionStart = e.target.value.length;
+	}
+
 	return (
 		<>
 			<HStack
@@ -55,6 +60,7 @@ export default function DescriptionDrawerSection(props) {
 				placeholder='Write a description...'
 				resize='none'
 				autoFocus
+				onSelect={handleOnSelect}
 				onChange={(e) => dispatch(addDescription(e.target.value))}
 				value={description}
 			/>}
