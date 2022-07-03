@@ -1,5 +1,6 @@
 import React from 'react';
 import {Stack, Box, Button} from '@chakra-ui/react';
+import {Link} from 'react-router-dom';
 
 import HLogoBar from '../components/HLogoBar';
 
@@ -27,12 +28,16 @@ export default function Home() {
 				w='100%'
 				spacing={{base: '3rem', md: '6rem', lg: '7rem', xl: '8rem'}}
 			>
-				<Button {...commonButtonProps}>
-					Sign up
-				</Button>
-				<Button {...commonButtonProps}>
+				<Link to='/signup'>
+					<Button {...commonButtonProps}>
+						Sign up
+					</Button>
+				</Link>
+				<Link to='login'>
+					<Button {...commonButtonProps}>
 					Log in
-				</Button>
+					</Button>
+				</Link>
 				<Button {...commonButtonProps}>
 					Log in as guest
 				</Button>

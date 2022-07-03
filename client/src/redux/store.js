@@ -1,12 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import descriptionReducer from
-	'../components/DrawerSections/DescriptionSection/descriptionSlice';
+	'../components/RecipeDrawer/DrawerSections/DescriptionSection/descriptionSlice';
 import ingredientsReducer from
-	'../components/DrawerSections/IngredientsSection/ingredientsSlice';
+	'../components/RecipeDrawer/DrawerSections/IngredientsSection/ingredientsSlice';
 import recipeStepsReducer from
-	'../components/DrawerSections/RecipeStepsSection/recipeStepsSlice';
+	'../components/RecipeDrawer/DrawerSections/RecipeStepsSection/recipeStepsSlice';
 import photosReducer from
-	'../components/DrawerSections/PhotoSection/photosSlice';
+	'../components/RecipeDrawer/DrawerSections/PhotoSection/photosSlice';
 
 /* Stores the recipe in client state while the user is creating a recipe.
 This allows the user to close the create recipe modal, continue with something
