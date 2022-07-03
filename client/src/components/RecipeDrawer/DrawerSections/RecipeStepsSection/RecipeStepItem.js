@@ -36,7 +36,7 @@ export default function RecipeStepItem(props) {
 				<Input
 					ref={inputRef}
 					type='text'
-					placeholder='Enter recipe step...'
+					placeholder='Enter recipe step'
 					value={recipeStep}
 					onChange={
 						(e) =>

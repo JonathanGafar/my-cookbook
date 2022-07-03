@@ -38,7 +38,7 @@ export default function IngredientItem(props) {
 					id={props.id}
 					ref={inputRef}
 					type='text'
-					placeholder='Enter ingredient...'
+					placeholder='Enter ingredient'
 					value={ingredient}
 					onChange={(e) => dispatch(onIngredientChange({
 						ingredientNum: props.ingredientNum,
