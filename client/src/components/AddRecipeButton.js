@@ -1,21 +1,12 @@
 import React from 'react';
 import {
 	IconButton,
-	Drawer,
-	DrawerBody,
-	DrawerContent,
-	DrawerOverlay,
-	DrawerCloseButton,
-	DrawerFooter,
-	DrawerHeader,
-	useDisclosure,
-	Input,
-	Button
+	useDisclosure
 } from '@chakra-ui/react';
 
 import {MdPostAdd} from 'react-icons/md';
 
-import RecipeDrawer from './RecipeDrawer';
+import RecipeDrawer from './RecipeDrawer/RecipeDrawer';
 
 export default function AddRecipeButton(props) {
 	/* Functions and boolean variables that are passed down as a prop to

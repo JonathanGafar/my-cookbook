@@ -7,7 +7,7 @@ import {
 
 /* react-icon styling must be done with a .css file instead of Chakra props, as the
 react-icon components cannot be styled with Chakra props. */
-import '../../../assets/DrawerSectionStyles.css';
+import '../../../../assets/DrawerSectionStyles.css';
 
 import PhotoItem from './PhotoItem';
 

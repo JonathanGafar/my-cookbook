@@ -18,7 +18,7 @@ import {BiPhotoAlbum} from 'react-icons/bi';
 import {FaTrash} from 'react-icons/fa';
 import {useSelector, useDispatch} from 'react-redux';
 
-import emptyPhoto from '../../../assets/emptyPhoto.jpg';
+import emptyPhoto from '../../../../assets/emptyPhoto.jpg';
 import {addPhoto, deletePhoto} from './photosSlice';
 import PhotoModal from './PhotoModal';
 
