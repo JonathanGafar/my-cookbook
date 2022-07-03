@@ -16,6 +16,7 @@ import HLogoBar from '../components/HLogoBar';
 import AddRecipeButton from '../components/AddRecipeButton';
 import ProfileSettingsButton from '../components/ProfileSettingsButton';
 import NotificationsButton from '../components/NotificationsButton';
+import ProfilePhotoButton from '../components/ProfilePhotoButton';
 import InputGroupRight from '../components/InputGroupRight';
 
 export default function LoggedIn() {
@@ -60,6 +61,12 @@ function LargeScreenPage(props) {
 				rowStart='1'
 				rowEnd='2'
 			>
+				<ProfilePhotoButton
+					{...commonIconButtonProps}
+					// Override these props
+					size='1.7rem'
+					mb='0.8rem'
+				/>
 				<AddRecipeButton {...commonIconButtonProps} />
 				<NotificationsButton {...commonIconButtonProps} />
 				<ProfileSettingsButton {...commonIconButtonProps} />
@@ -89,6 +96,12 @@ function SmallScreenPage(props) {
 		>
 			<HLogoBar />
 			<HStack mt='2rem' spacing='3rem' justify='center'>
+				<ProfilePhotoButton
+					{...commonIconButtonProps}
+					// Override these props
+					size='1.7rem'
+					mb='-0.2rem'
+				/>
 				<AddRecipeButton {...commonIconButtonProps} />
 				<NotificationsButton {...commonIconButtonProps} />
 				<ProfileSettingsButton {...commonIconButtonProps} />
