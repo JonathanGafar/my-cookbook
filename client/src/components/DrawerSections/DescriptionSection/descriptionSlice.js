@@ -3,9 +3,13 @@ import {createSlice} from '@reduxjs/toolkit';
 export const descriptionSlice = createSlice({
 	name: 'description',
 	initialState: {
+		name: '',
 		description: null
 	},
 	reducers: {
+		addName: (state, action) => {
+			state.name = action.payload;
+		},
 		addDescription: (state, action) => {
 			state.description = action.payload;
 		},
@@ -16,5 +20,5 @@ export const descriptionSlice = createSlice({
 
 });
 
-export const {addDescription, deleteDescription} = descriptionSlice.actions;
+export const {addName, addDescription, deleteDescription} = descriptionSlice.actions;
 export default descriptionSlice.reducer;

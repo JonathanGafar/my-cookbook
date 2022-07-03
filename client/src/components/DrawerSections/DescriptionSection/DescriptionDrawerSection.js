@@ -2,7 +2,8 @@ import React from 'react';
 import {
 	HStack,
 	Text,
-	Textarea
+	Textarea,
+	Input
 } from '@chakra-ui/react';
 
 import {FaEdit, FaTrash} from 'react-icons/fa';
@@ -12,16 +13,11 @@ import {useSelector, useDispatch} from 'react-redux';
 react-icon components cannot be styled with Chakra props. */
 import '../../../assets/DrawerSectionStyles.css';
 
-import {addDescription, deleteDescription} from './descriptionSlice';
+import {addName, addDescription, deleteDescription} from './descriptionSlice';
 
 export default function DescriptionDrawerSection(props) {
-	const description = useSelector(state => state.description.description);
+	const {name, description} = useSelector(state => state.description);
 	const dispatch = useDispatch();
-
-	// Put cursor at end of text when the textArea component autofocuses
-	function handleOnSelect(e) {
-		e.target.selectionStart = e.target.value.length;
-	}
 
 	return (
 		<>
@@ -29,11 +25,29 @@ export default function DescriptionDrawerSection(props) {
 				spacing='0.8rem'
 				mb='1rem'
 				h='4rem'
+				w={{base: '100%', smd: '80%', lg: '40%'}}
+				bg='white'
+				top='-0.5rem'
+			>
+				<Text
+					fontSize={{base: 'md', md: 'lg'}}
+					fontWeight='600'
+				>
+					Name
+				</Text>
+				<Input
+					placeholder='Your recipe&apos;s name'
+					onChange={(e) => dispatch(addName(e.target.value))}
+					value={name}
+				/>
+			</HStack>
+			<HStack
+				spacing='0.8rem'
+				mb='1rem'
+				h='4rem'
 				w='100%'
 				bg='white'
 				top='-0.5rem'
-				position='sticky'
-				zIndex='200'
 			>
 				<Text
 					fontSize={{base: 'md', md: 'lg'}}
@@ -57,10 +71,8 @@ export default function DescriptionDrawerSection(props) {
 				</HStack>
 			</HStack>
 			{description !== null && <Textarea
-				placeholder='Write a description...'
+				placeholder='Write a description'
 				resize='none'
-				autoFocus
-				onSelect={handleOnSelect}
 				onChange={(e) => dispatch(addDescription(e.target.value))}
 				value={description}
 			/>}
