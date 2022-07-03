@@ -1,0 +1,23 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "semi": ["error", "always"],
+        "space-before-function-paren": ["error", "never"],
+        "eol-last": ["error", "never"],
+        "no-unused-vars": "off",
+        "object-curly-spacing": ["error", "never"],
+        "indent": ["error", "tab"],
+        "no-tabs": [0],
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+        "no-mixed-spaces-and-tabs": [0],
+        "no-undef": [0]
+    }
+}
