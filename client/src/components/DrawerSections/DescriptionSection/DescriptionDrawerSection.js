@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
 	HStack,
 	Text,
@@ -18,6 +18,17 @@ import {addName, addDescription, deleteDescription} from './descriptionSlice';
 export default function DescriptionDrawerSection(props) {
 	const {name, description} = useSelector(state => state.description);
 	const dispatch = useDispatch();
+	const textRef = useRef();
+
+	function onAddDescriptionClick() {
+		dispatch(addDescription(''));
+
+		/* dispatching the addDescription action is asynchronous, and so
+			textRef is null as soon as addDescription is dispatched. A timeout
+			is necessary to allow textRef to point to the TextArea component
+			before trying to focus it */
+		setTimeout(() => textRef.current.focus(), 0);
+	}
 
 	return (
 		<>
@@ -60,7 +71,7 @@ export default function DescriptionDrawerSection(props) {
 						className='drawer-section-button'
 						aria-label='Create or edit description'
 						size='1.2rem'
-						onClick={() => dispatch(addDescription(''))}
+						onClick={onAddDescriptionClick}
 					/>
 					<FaTrash
 						className='drawer-section-button'
@@ -71,6 +82,7 @@ export default function DescriptionDrawerSection(props) {
 				</HStack>
 			</HStack>
 			{description !== null && <Textarea
+				ref={textRef}
 				placeholder='Write a description'
 				resize='none'
 				onChange={(e) => dispatch(addDescription(e.target.value))}
