@@ -12,27 +12,20 @@ import {
 import {FaSearch} from 'react-icons/fa';
 
 import VNavbar from '../components/VNavbar';
-import HNavbar from '../components/HNavbar';
+import HLogoBar from '../components/HLogoBar';
 import AddRecipeButton from '../components/AddRecipeButton';
 import ProfileSettingsButton from '../components/ProfileSettingsButton';
 import NotificationsButton from '../components/NotificationsButton';
 import InputGroupRight from '../components/InputGroupRight';
 
 export default function LoggedIn() {
-	/* Detects the screen size and sets screenSize to be equal to its alias.
-	For example, if the screen size is less than 30rem, screenSize will equal
-	"small" */
 	const screenSize = useBreakpointValue({
-		base: 'small',
-		smd: 'medium',
 		lg: 'large'
 	});
 
 	if (screenSize === 'large') {
 		return (<LargeScreenPage />);
-	} else if (screenSize === 'medium') {
-		return (<SmallMediumScreenPage />);
-	} else if (screenSize === 'small') {
+	} else {
 		return (<SmallScreenPage />);
 	}
 }
@@ -78,34 +71,7 @@ function LargeScreenPage(props) {
 	);
 };
 
-// The layout for screens whose widths are 39rem or larger
-function SmallMediumScreenPage(props) {
-	return (
-		<Box
-			h='100vh'
-			bg='pageBackgroundColor'
-		>
-			<HNavbar />
-			<VStack mt='3rem' w='100%' spacing='1.5rem'>
-				<InputGroupRight
-					w='45%'
-					placeholder='Search people'
-					ariaLabel='Search people'
-					icon={<FaSearch />}
-				/>
-				<InputGroupRight
-					w='45%'
-					placeholder='Search recipes'
-					areaLabel='Search recipes'
-					icon={<FaSearch />}
-				/>
-			</VStack>
-		</Box>
-
-	);
-}
-
-// The layout for screens whose widths are less than 39rem
+// The layout for screens whose widths are less than 62rem
 function SmallScreenPage(props) {
 	const commonIconButtonProps = {
 		color: 'buttonColor',
@@ -121,7 +87,7 @@ function SmallScreenPage(props) {
 			h='100vh'
 			bg='pageBackgroundColor'
 		>
-			<HNavbar />
+			<HLogoBar />
 			<HStack mt='2rem' spacing='3rem' justify='center'>
 				<AddRecipeButton {...commonIconButtonProps} />
 				<NotificationsButton {...commonIconButtonProps} />
@@ -129,13 +95,13 @@ function SmallScreenPage(props) {
 			</HStack>
 			<VStack mt='3rem' w='100%' spacing='1.5rem'>
 				<InputGroupRight
-					w='55%'
+					w={{base: '55%', smd: '45%'}}
 					placeholder='Search people'
 					ariaLabel='Search people'
 					icon={<FaSearch />}
 				/>
 				<InputGroupRight
-					w='55%'
+					w={{base: '55%', smd: '45%'}}
 					placeholder='Search recipes'
 					areaLabel='Search recipes'
 					icon={<FaSearch />}

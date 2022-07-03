@@ -1,7 +1,7 @@
 import React from 'react';
 import {VStack, Button, Box, Link, Input, useMediaQuery} from '@chakra-ui/react';
 
-import HNavbar from '../components/HNavbar';
+import HLogoBar from '../components/HLogoBar';
 
 export default function Login() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
@@ -20,7 +20,7 @@ export default function Login() {
 			h='100vh'
 			bg='pageBackgroundColor'
 		>
-			<HNavbar />
+			<HLogoBar />
 			<form style={{...formStyles}}>
 				<VStack
 					bg='white'

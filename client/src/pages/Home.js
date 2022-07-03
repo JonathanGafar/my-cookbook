@@ -1,7 +1,7 @@
 import React from 'react';
 import {Stack, Box, Button} from '@chakra-ui/react';
 
-import HNavbar from '../components/HNavbar';
+import HLogoBar from '../components/HLogoBar';
 
 export default function Home() {
 	const commonButtonProps = {
@@ -17,7 +17,7 @@ export default function Home() {
 			h='100vh'
 			bg='pageBackgroundColor'
 		>
-			<HNavbar />
+			<HLogoBar />
 			<Stack
 				mt={{base: '8rem', md: '0'}}
 				justify={{base: 'flexStart', md: 'center'}}
