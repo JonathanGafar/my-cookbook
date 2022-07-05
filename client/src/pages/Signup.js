@@ -1,5 +1,14 @@
 import React from 'react';
-import {VStack,	Box, Button, useMediaQuery, Input} from '@chakra-ui/react';
+import {
+	VStack,
+	Box,
+	Button,
+	useMediaQuery,
+	Input,
+	FormControl,
+	FormErrorMessage
+} from '@chakra-ui/react';
+import {useForm} from 'react-hook-form';
 
 import HLogoBar from '../components/HLogoBar';
 
@@ -15,13 +24,26 @@ export default function Signup() {
 		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
 	};
 
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: {
+			errors
+		}
+	} = useForm();
+
+	function onSubmit(data) {
+		console.log(data);
+	}
+
 	return (
 		<Box
 			h='100vh'
 			bg='pageBackgroundColor'
 		>
 			<HLogoBar />
-			<form style={{...formStyles}}>
+			<form onSubmit={handleSubmit(onSubmit)} style={{...formStyles}}>
 				<VStack
 					bg='white'
 					borderWidth='1px'
@@ -34,23 +56,60 @@ export default function Signup() {
 					justify='center'
 					spacing='1.75rem'
 				>
-					<Input
-						placeholder='Username'
-						type='text'
-					/>
-					<Input
-						placeholder='Email'
-						type='email'
-					/>
-					<Input
-						placeholder='Password'
-						type='password'
-					/>
-					<Input
-						placeholder='Confirm password'
-						type='password'
-					/>
+					<FormControl isInvalid={errors.username}>
+						<Input
+							placeholder='Username'
+							type='text'
+							{...register('username', {
+								required: true
+							})}
+						/>
+						<FormErrorMessage>
+							Enter a username
+						</FormErrorMessage>
+					</FormControl>
+					<FormControl isInvalid={errors.email}>
+						<Input
+							placeholder='Email'
+							type='email'
+							{...register('email', {
+								required: true
+							})}
+						/>
+						<FormErrorMessage>
+						Enter your email
+						</FormErrorMessage>
+					</FormControl>
+					<FormControl isInvalid={errors.password}>
+						<Input
+							placeholder='Password'
+							type='password'
+							{...register('password', {
+								required: true,
+								minLength: 8
+							})}
+						/>
+						<FormErrorMessage>
+							Password must be at least 8 characters long
+						</FormErrorMessage>
+					</FormControl>
+					<FormControl
+						isInvalid={watch('password') !== watch('confirmedPassword')}
+					>
+						<Input
+							placeholder='Confirm password'
+							type='password'
+							{...register('confirmedPassword', {
+								required: true,
+								minLength: 8
+							})}
+						/>
+						<FormErrorMessage>
+							Passwords do not match
+						</FormErrorMessage>
+					</FormControl>
 					<Button
+						type='submit'
 						variant='generalButton'
 					>
 						Sign up
