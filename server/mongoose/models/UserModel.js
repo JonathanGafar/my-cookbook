@@ -20,6 +20,10 @@ const User = new mongoose.Schema({
 		validation will occur on the front end and also just before the password
 		is hashed  */ 
 		minLength: 1
+	},
+	verified: {
+		type: Boolean,
+		required: true
 	}
 });
 
