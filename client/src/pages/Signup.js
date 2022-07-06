@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
 	VStack,
 	Box,
 	Button,
-	useMediaQuery,
+	Text,
 	Input,
 	FormControl,
-	FormErrorMessage
+	FormErrorMessage,
+	useMediaQuery
 } from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
 
 import HLogoBar from '../components/HLogoBar';
+import {signupUser} from '../api/api';
 
 export default function Signup() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
 	returns an array of booleans. */
 	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
+	const [formSubmitError, setFormSubmitError] = useState('');
 
 	const formStyles = {
 		display: 'flex',
@@ -28,13 +32,23 @@ export default function Signup() {
 		register,
 		handleSubmit,
 		watch,
+		reset,
 		formState: {
 			errors
 		}
 	} = useForm();
 
-	function onSubmit(data) {
-		console.log(data);
+	const {mutateAsync, isLoading} = useMutation(signupUser);
+
+	async function onSubmit(data) {
+		setFormSubmitError(null);
+		const response = await mutateAsync(data);
+
+		if (response.errorMessage) {
+			return setFormSubmitError(response.errorMessage);
+		}
+
+		reset();
 	}
 
 	return (
@@ -52,7 +66,7 @@ export default function Signup() {
 					px='2rem'
 					pt='2rem'
 					pb='1rem'
-					minW={{base: '90%', sm: '55%', md: '40%', lg: '20%'}}
+					w={{base: '90%', sm: '55%', md: '40%', lg: '25%'}}
 					justify='center'
 					spacing='1.75rem'
 				>
@@ -108,6 +122,9 @@ export default function Signup() {
 							Passwords do not match
 						</FormErrorMessage>
 					</FormControl>
+					{formSubmitError && <Text color='red' textAlign='center'>
+						{formSubmitError}
+					</Text>}
 					<Button
 						type='submit'
 						variant='generalButton'
