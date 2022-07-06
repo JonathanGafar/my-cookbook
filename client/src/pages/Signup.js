@@ -38,16 +38,24 @@ export default function Signup() {
 		}
 	} = useForm();
 
-	const {mutateAsync, isSuccess, isLoading: isSubmitting, isError} = useMutation(signupUser);
+	const {
+		mutateAsync,
+		isSuccess,
+		isLoading: isSubmitting,
+		isError
+	} = useMutation(signupUser);
 
 	async function onSubmit(data) {
+		// Reset error once the form is submitted again
 		setFormSubmitError(null);
+
 		const response = await mutateAsync(data);
 
 		if (response.errorMessage) {
 			return setFormSubmitError(response.errorMessage);
 		}
 
+		// Reset all input fields after the form is submitted
 		reset();
 	}
 
@@ -82,6 +90,7 @@ export default function Signup() {
 							Enter a username
 						</FormErrorMessage>
 					</FormControl>
+
 					<FormControl isInvalid={errors.email}>
 						<Input
 							placeholder='Email'
@@ -94,6 +103,7 @@ export default function Signup() {
 						Enter your email
 						</FormErrorMessage>
 					</FormControl>
+
 					<FormControl isInvalid={errors.password}>
 						<Input
 							placeholder='Password'
@@ -107,6 +117,7 @@ export default function Signup() {
 							Password must be at least 8 characters long
 						</FormErrorMessage>
 					</FormControl>
+
 					<FormControl
 						isInvalid={watch('password') !== watch('confirmedPassword')}
 					>
@@ -122,15 +133,18 @@ export default function Signup() {
 							Passwords do not match
 						</FormErrorMessage>
 					</FormControl>
+
 					{formSubmitError &&
 					<Text color='red' textAlign='center'>
 						{formSubmitError}
 					</Text>}
+
 					{isError &&
 					<Text color='red' textAlign='center'>
 						A network error occured. The user account was not created.
 						Please try again.
 					</Text>}
+
 					<Button
 						type='submit'
 						variant='generalButton'
