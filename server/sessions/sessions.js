@@ -19,7 +19,7 @@ const userSession = session({
 	store: sessionStore,
 	rolling: true,
 	cookie: {
-	  maxAge: 1000 * 60  * 60
+	  maxAge: 1000 * 60  * 60 * 24 * 30
 	}
 });
 
