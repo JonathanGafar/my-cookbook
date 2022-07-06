@@ -7,15 +7,16 @@ passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password
 	function(email, password, callback) {
 		User.findOne({email: email}).then(function(user) {
 			if (!user) {
-				return callback(null, false);
+				return callback(null, false, 
+					{errorMessage: 'Email address not found'});
 			}
 
 			bcrypt.compare(password, user.password, function(err, result) {
 				if (result) {
 					return callback(null, user);
 				}
-	
-				return callback(null, false);
+
+				return callback(null, false, {errorMessage: 'Incorrect password'});
 			});
 		});
 

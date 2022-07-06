@@ -12,7 +12,7 @@ export default function App() {
 			<Route element={<Home />} path='/' />
 			<Route element={<Signup />} path='/signup' />
 			<Route element={<Login />} path='/login' />
-			<Route element={<LoggedIn />} path='/loggedin' />
+			<Route element={<LoggedIn />} path='/users/:id' />
 		</Routes>
 	);
 }

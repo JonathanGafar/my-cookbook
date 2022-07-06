@@ -67,18 +67,16 @@ So no query involving unsanitized user input is ever performed. */
 exports.loginUser = [
 	body('email').trim().escape(),
 	function(req, res, next) {
-		passport.authenticate('local', {}, function(err, user) {
+		passport.authenticate('local', {}, function(err, user, info) {
 			if (err) {
 				return next(err);
 			}
 	
 			if (!user) {
-				return res.json({
-					errorMessage: 'Invalid login credentials'
-				});
+				return res.json(info);
 			}
 			
-			req.logIn(user, function(err){
+			req.login(user, function(err){
 				if (err) {
 					return next(err);
 				}
