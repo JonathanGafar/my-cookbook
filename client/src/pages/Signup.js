@@ -19,7 +19,7 @@ export default function Signup() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
 	returns an array of booleans. */
 	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
-	const [formSubmitError, setFormSubmitError] = useState('');
+	const [formSubmitError, setFormSubmitError] = useState(null);
 
 	const formStyles = {
 		display: 'flex',
@@ -38,7 +38,7 @@ export default function Signup() {
 		}
 	} = useForm();
 
-	const {mutateAsync, isLoading} = useMutation(signupUser);
+	const {mutateAsync, isSuccess, isLoading: isSubmitting, isError} = useMutation(signupUser);
 
 	async function onSubmit(data) {
 		setFormSubmitError(null);
@@ -122,12 +122,19 @@ export default function Signup() {
 							Passwords do not match
 						</FormErrorMessage>
 					</FormControl>
-					{formSubmitError && <Text color='red' textAlign='center'>
+					{formSubmitError &&
+					<Text color='red' textAlign='center'>
 						{formSubmitError}
+					</Text>}
+					{isError &&
+					<Text color='red' textAlign='center'>
+						A network error occured. The user account was not created.
+						Please try again.
 					</Text>}
 					<Button
 						type='submit'
 						variant='generalButton'
+						isLoading={isSubmitting}
 					>
 						Sign up
 					</Button>

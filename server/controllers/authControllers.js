@@ -37,7 +37,16 @@ exports.signupUser = [
 				password: hashedPassword
 			}).save((err, user) => {
 				if (err) {
-					return res.status(400).json(err);
+					switch(err.code) {
+					case 11000:
+						return res.status(400).json({
+							errorMessage:
+									`This email address already has an account 
+										associated with it.`
+						});
+					default:
+						return res.status(400).json(err);
+					}
 				}
 
 				return res.json(user);
