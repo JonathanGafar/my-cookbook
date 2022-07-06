@@ -1,6 +1,8 @@
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
+
 const User = require('../mongoose/models/UserModel');
+const passport = require('../passport/passportStrategy');
 
 exports.signupUser = [
 	body('username', 'You must enter a username').trim().isLength({min: 1}).escape(),
@@ -52,5 +54,37 @@ exports.signupUser = [
 				return res.json(user);
 			});
 		}
+	}
+];
+
+/* The password input is not sanitized so as to avoid possibly changing what the 
+user submitted for their password. There is no harm in this, since the hashed 
+password is first retrieved from the MongoDB database by querying by the user's 
+email address. Once the hashed password is retrieved, a string-based comparison 
+is performed with the hashed version of the password submitted by the user. 
+So no query involving unsanitized user input is ever performed. */
+
+exports.loginUser = [
+	body('email').trim().escape(),
+	function(req, res, next) {
+		passport.authenticate('local', {}, function(err, user) {
+			if (err) {
+				return next(err);
+			}
+	
+			if (!user) {
+				return res.json({
+					errorMessage: 'Invalid login credentials'
+				});
+			}
+			
+			req.logIn(user, function(err){
+				if (err) {
+					return next(err);
+				}
+	
+				return res.json(user);
+			});
+		})(req, res, next);
 	}
 ];
