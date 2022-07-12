@@ -30,7 +30,7 @@ passport.deserializeUser(async function(id, callback) {
 		const user = await User.findById(id);
 		return callback(null, user);
 	} catch(err) {
-		console.log(err);
+		return callback(err, false);
 	}
 });
 
