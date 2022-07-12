@@ -4,34 +4,34 @@ const User = require('../mongoose/models/UserModel');
 const bcrypt = require('bcryptjs');
 
 passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'},
-	function(email, password, callback) {
-		User.findOne({email: email}).then(function(user) {
-			if (!user) {
-				return callback(null, false, 
-					{errorMessage: 'Email address not found'});
-			}
+	async function(email, password, callback) {
+		const user = await User.findOne({email: email});
 
-			bcrypt.compare(password, user.password, function(err, result) {
-				if (result) {
-					return callback(null, user);
-				}
+		if (!user) {
+			return callback(null, false, 
+				{errorMessage: 'Email address not found'});
+		}
 
-				return callback(null, false, {errorMessage: 'Incorrect password'});
-			});
-		});
+		const passwordValid = await bcrypt.compare(password, user.password);
+		
+		if (passwordValid) {
+			return callback(null, user);
+		}
 
+		return callback(null, false, {errorMessage: 'Incorrect password'});
 	}));
 
 passport.serializeUser(function(user, callback) {
 	return callback(null, user.id);
 });
 
-passport.deserializeUser(function(id, callback) {
-	User.findById(id).then(function(user) {
+passport.deserializeUser(async function(id, callback) {
+	try {
+		const user = await User.findById(id);
 		return callback(null, user);
-	}).catch(function(err) {
+	} catch(err) {
 		console.log(err);
-	});
+	}
 });
 
 module.exports = passport;

@@ -33,26 +33,27 @@ exports.signupUser = [
 			return res.status(400).json(errorObject);
 		} else {
 			const hashedPassword = await bcrypt.hash(req.body.password, 10);
-			new User({
+			const user = await new User({
 				username: req.body.username,
 				email: req.body.email,
 				password: hashedPassword
-			}).save((err, user) => {
-				if (err) {
-					switch(err.code) {
-					case 11000:
-						return res.status(400).json({
-							errorMessage:
+			});
+			
+			try {
+				await user.save();
+				return res.json(user);
+			} catch(err) {
+				switch(err.code) {
+				case 11000:
+					return res.status(400).json({
+						errorMessage:
 									`This email address already has an account 
 										associated with it.`
-						});
-					default:
-						return res.status(400).json(err);
-					}
+					});
+				default:
+					return res.status(400).json(err);
 				}
-
-				return res.json(user);
-			});
+			}
 		}
 	}
 ];
@@ -76,6 +77,9 @@ exports.loginUser = [
 				return res.json(info);
 			}
 			
+			/* We are using a callback here instead of the async-await pattern 
+			because the req.login function will give an error if not supplied 
+			a callback. */
 			req.login(user, function(err){
 				if (err) {
 					return next(err);
