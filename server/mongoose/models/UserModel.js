@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const Recipe = require('./RecipeModel');
+
 const User = new mongoose.Schema({
 	username: {
 		type: String,
@@ -20,6 +22,11 @@ const User = new mongoose.Schema({
 		validation will occur on the front end and also just before the password
 		is hashed  */ 
 		minLength: 1
+	},
+	recipes: {
+		type: [Map],
+		ref: 'Recipes',
+		required: true
 	}
 });
 

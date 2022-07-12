@@ -18,6 +18,9 @@
         "no-tabs": [0],
         "quotes": ["error", "single", { "allowTemplateLiterals": true }],
         "no-mixed-spaces-and-tabs": [0],
-        "no-undef": [0]
+        "no-undef": [0],
+        "parserOptions": {
+            "ecmaVersion": 2020
+          }
     }
 }

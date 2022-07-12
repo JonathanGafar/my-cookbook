@@ -33,10 +33,11 @@ exports.signupUser = [
 			return res.status(400).json(errorObject);
 		} else {
 			const hashedPassword = await bcrypt.hash(req.body.password, 10);
-			const user = await new User({
+			const user = new User({
 				username: req.body.username,
 				email: req.body.email,
-				password: hashedPassword
+				password: hashedPassword,
+				recipes: []
 			});
 			
 			try {
