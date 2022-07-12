@@ -90,14 +90,3 @@ exports.loginUser = [
 		})(req, res, next);
 	}
 ];
-
-exports.confirmUser = function(req, res, next) {
-	if (req.user) {
-		return next();
-	} else {
-		return res.json({
-			errorMessage: `You are not authorized to access this page. 
-			Please log in.`
-		});
-	}
-};
