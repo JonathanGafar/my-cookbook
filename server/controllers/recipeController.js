@@ -24,7 +24,7 @@ exports.saveRecipe = async function(req, res, next) {
 		return res.json(updatedUser);
 	}
 
-	return res.json({
+	return res.status(400).json({
 		errorMessage: 'You cannot post a recipe here'
 	});
 };
