@@ -14,13 +14,14 @@ const userSession = session({
 	secret: [process.env.SESSION_SECRET],
 	resave: false,
 	saveUninitialized: false,
-	httpOnly: true,
 	unset: 'destroy',
 	store: sessionStore,
 	rolling: true,
 	cookie: {
-	  maxAge: 1000 * 60  * 60 * 24 * 30
+	  maxAge: 1000 * 60  * 60 * 24 * 30,
+	  httpOnly: true
 	}
+	
 });
 
 module.exports = userSession;

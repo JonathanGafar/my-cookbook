@@ -16,6 +16,7 @@ import {
 	TabPanel,
 	Button
 } from '@chakra-ui/react';
+import {useMutation} from 'react-query';
 
 import DescriptionDrawerSection from
 	'./DrawerSections/DescriptionSection/DescriptionDrawerSection';
@@ -32,7 +33,8 @@ import {deleteIngredient} from
 	'./DrawerSections/IngredientsSection/ingredientsSlice';
 import {deleteRecipeStep} from
 	'./DrawerSections/RecipeStepsSection/recipeStepsSlice';
-import {cleanRecipeDrawer} from './HelperFunctions';
+import {cleanRecipeDrawer, getRecipeFromRedux} from './HelperFunctions';
+import {saveRecipe} from '../../api/api';
 
 export default function RecipeDrawer(props) {
 	const commonTabProps = {
@@ -44,6 +46,14 @@ export default function RecipeDrawer(props) {
 			boxShadow: 'none'
 		}
 	};
+
+	const {mutateAsync} = useMutation(saveRecipe);
+
+	async function saveRecipeOnClick() {
+		const recipeData = getRecipeFromRedux();
+		const response = await mutateAsync(recipeData);
+		console.log(response);
+	}
 
 	return (
 		<Drawer
@@ -112,7 +122,7 @@ export default function RecipeDrawer(props) {
 					>
 						Close
 					</Button>
-					<Button variant='drawerButton'>
+					<Button variant='drawerButton' onClick={saveRecipeOnClick}>
 						Save
 					</Button>
 				</DrawerFooter>

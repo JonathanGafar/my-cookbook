@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
 import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 
 import HLogoBar from '../components/HLogoBar';
 import {loginUser} from '../api/api';
@@ -42,15 +43,19 @@ export default function Login() {
 		isError
 	} = useMutation(loginUser);
 
+	const navigate = useNavigate();
+
 	const [invalidCredentials, setInvalidCredentials] = useState(null);
 
 	async function onSubmit(data) {
 		setInvalidCredentials(null);
-		const response = await mutateAsync(data);
+		const user = await mutateAsync(data);
 
-		if (response.errorMessage) {
-			return setInvalidCredentials(response.errorMessage);
+		if (user.errorMessage) {
+			return setInvalidCredentials(user.errorMessage);
 		}
+
+		navigate(`/users/${user.id}`, {replace: true});
 	}
 
 	return (

@@ -42,7 +42,11 @@ exports.signupUser = [
 			
 			try {
 				await user.save();
-				return res.json(user);
+				return res.json({
+					username: user.username,
+					email: user.email,
+					id: user._id.toString()
+				});
 			} catch(err) {
 				switch(err.code) {
 				case 11000:
@@ -86,7 +90,11 @@ exports.loginUser = [
 					return next(err);
 				}
 	
-				return res.json(user);
+				return res.json({
+					username: user.username,
+					email: user.email,
+					id: user._id.toString()
+				});
 			});
 		})(req, res, next);
 	}

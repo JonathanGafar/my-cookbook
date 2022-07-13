@@ -41,3 +41,15 @@ export function cleanRecipeDrawer() {
 		}
 	}
 }
+
+export function getRecipeFromRedux() {
+	const recipeDrawerData = store.getState();
+	const recipeData = {
+		name: recipeDrawerData.description.name,
+		description: recipeDrawerData.description.description,
+		ingredients: recipeDrawerData.ingredients.ingredients,
+		recipeSteps: recipeDrawerData.recipeSteps.recipeSteps
+	};
+
+	return recipeData;
+}

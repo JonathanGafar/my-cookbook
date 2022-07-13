@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
 import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router';
 
 import HLogoBar from '../components/HLogoBar';
 import {signupUser} from '../api/api';
@@ -45,16 +46,19 @@ export default function Signup() {
 		isError
 	} = useMutation(signupUser);
 
+	const navigate = useNavigate();
+
 	async function onSubmit(data) {
 		// Reset error once the form is submitted again
 		setFormSubmitError(null);
 
-		const response = await mutateAsync(data);
+		const user = await mutateAsync(data);
 
-		if (response.errorMessage) {
-			return setFormSubmitError(response.errorMessage);
+		if (user.errorMessage) {
+			return setFormSubmitError(user.errorMessage);
 		}
 
+		navigate(`/users/${user.id}`, {replace: true});
 		// Reset all input fields after the form is submitted
 		reset();
 	}

@@ -23,4 +23,15 @@ export async function loginUser(formData) {
 }
 
 export async function saveRecipe(recipeData) {
+	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/users/:id/recipes`,
+		{
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(recipeData)
+		});
+
+	return response.json();
 }
