@@ -99,3 +99,15 @@ exports.loginUser = [
 		})(req, res, next);
 	}
 ];
+
+exports.getUserID = function(req, res) {
+	if (req.user) {
+		return res.json({
+			id: req.user._id.toString()
+		});
+	}
+
+	return res.json({
+		errorMessage: 'No user logged in'
+	});
+};

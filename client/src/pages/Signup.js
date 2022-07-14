@@ -51,14 +51,12 @@ export default function Signup() {
 	async function onSubmit(data) {
 		// Reset error once the form is submitted again
 		setFormSubmitError(null);
-
 		const user = await mutateAsync(data);
 
 		if (user.errorMessage) {
 			return setFormSubmitError(user.errorMessage);
 		}
 
-		navigate(`/users/${user.id}`, {replace: true});
 		// Reset all input fields after the form is submitted
 		reset();
 	}

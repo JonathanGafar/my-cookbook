@@ -17,11 +17,10 @@ app.use(userSession);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-// app.use(cors({
-// 	origin : 'http://localhost:3000',
-// 	credentials: true
-// }));
-app.use(cors());
+app.use(cors({
+	origin : true,
+	credentials: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
