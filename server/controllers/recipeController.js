@@ -1,3 +1,6 @@
+/* This file contains controller functions that are related to creating, reading, 
+updating, or deleting a recipe */
+
 const {body, validationResult} = require('express-validator');
 
 const User = require('../mongoose/models/UserModel');

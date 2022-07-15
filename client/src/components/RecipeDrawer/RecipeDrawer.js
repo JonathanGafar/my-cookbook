@@ -52,7 +52,6 @@ export default function RecipeDrawer(props) {
 	async function saveRecipeOnClick() {
 		const recipeData = getRecipeFromRedux();
 		const response = await mutateAsync(recipeData);
-		console.log(response);
 	}
 
 	return (

@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-	IconButton,
-	useDisclosure
-} from '@chakra-ui/react';
+import {IconButton,	useDisclosure} from '@chakra-ui/react';
 
 import {MdPostAdd} from 'react-icons/md';
 

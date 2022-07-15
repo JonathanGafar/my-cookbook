@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-	HStack,
-	Image
-} from '@chakra-ui/react';
+import {HStack, Image} from '@chakra-ui/react';
 
 import LogoTransparent from '../assets/logo_transparent.png';
 

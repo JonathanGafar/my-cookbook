@@ -1,5 +1,5 @@
 export async function signupUser(formData) {
-	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
+	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/users`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -11,7 +11,7 @@ export async function signupUser(formData) {
 }
 
 export async function loginUser(formData) {
-	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/login`, {
+	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/login`, {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
@@ -24,7 +24,7 @@ export async function loginUser(formData) {
 }
 
 async function getUserID() {
-	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/userid`, {
+	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/userid`, {
 		method: 'GET',
 		credentials: 'include'
 	});
@@ -35,7 +35,7 @@ async function getUserID() {
 export async function saveRecipe(recipeData) {
 	const userID = await getUserID();
 	const response =
-		await fetch(`${process.env.REACT_APP_API_SERVER}/users/${userID.id}/recipes`,
+		await fetch(`${process.env.REACT_APP_API_SERVER}/api/users/${userID.id}/recipes`,
 			{
 				method: 'POST',
 				credentials: 'include',

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import {
 	HStack,
 	InputGroup,
@@ -18,9 +18,9 @@ export default function RecipeStepItem(props) {
 	);
 	const dispatch = useDispatch();
 
-	const inputRef = useRef();
+	const inputRef = React.useRef();
 
-	useEffect(() => {
+	React.useEffect(() => {
 		inputRef.current.scrollIntoView({behavior: 'smooth'});
 		inputRef.current.focus();
 	}, []);

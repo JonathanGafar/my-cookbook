@@ -24,7 +24,7 @@ app.use(cors({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+app.use('/api', routes);
 
 const port = process.env.PORT || 5000;
 

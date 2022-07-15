@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
 	HStack,
 	Text,
@@ -18,7 +18,7 @@ import {addName, addDescription, deleteDescription} from './descriptionSlice';
 export default function DescriptionDrawerSection(props) {
 	const {name, description} = useSelector(state => state.description);
 	const dispatch = useDispatch();
-	const textRef = useRef();
+	const textRef = React.useRef();
 
 	function onAddDescriptionClick() {
 		dispatch(addDescription(''));

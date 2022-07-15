@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {
 	VStack,
 	HStack,
@@ -34,8 +34,8 @@ export default function PhotoItem(props) {
 		onClose: onClosePhoto
 	} = useDisclosure();
 
-	const photoRef = useRef();
-	const cancelRef = useRef();
+	const photoRef = React.useRef();
+	const cancelRef = React.useRef();
 
 	function onAddPhotoClick() {
 		photoRef.current.click();

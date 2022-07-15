@@ -1,9 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
 	HStack,
-	Spacer,
-	Text,
-	useBreakpointValue
+	Text
 } from '@chakra-ui/react';
 
 import {FaEdit} from 'react-icons/fa';

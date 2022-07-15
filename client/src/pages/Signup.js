@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
 	VStack,
 	Box,
@@ -20,7 +20,7 @@ export default function Signup() {
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
 	returns an array of booleans. */
 	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
-	const [formSubmitError, setFormSubmitError] = useState(null);
+	const [formSubmitError, setFormSubmitError] = React.useState(null);
 
 	const formStyles = {
 		display: 'flex',

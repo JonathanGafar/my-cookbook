@@ -1,17 +1,24 @@
-const express = require('express');
 const router = require('express').Router();
 
 const authController = require('../controllers/authController');
 const recipeController = require('../controllers/recipeController');
-const customMiddleware = require('../controllers/customMiddleware');
 
+// Authentication GET routes
+router.get('/userid', authController.getUserID);
+
+// Authentication POST routes
 router.post('/users', authController.signupUser);
 router.post('/login', authController.loginUser);
-router.get('/users/:id', customMiddleware.confirmUser, function(req, res, next) {
+
+// User content GET routes
+router.get('/users/:id', authController.confirmUser, function(req, res, next) {
 	return res.send('just testing');
 });
-router.post('/users/:id/recipes', customMiddleware.confirmUser,
+
+// User content POST routes
+router.post('/users/:id/recipes', authController.confirmUser,
 	recipeController.saveRecipe);
-router.get('/userid', authController.getUserID);
+
+
 
 module.exports = router;

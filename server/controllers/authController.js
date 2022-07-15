@@ -1,3 +1,6 @@
+/* This file contains controller functions that are related to authentication 
+and security */
+
 const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
 
@@ -99,6 +102,18 @@ exports.loginUser = [
 		})(req, res, next);
 	}
 ];
+
+// Confirm user is logged in
+exports.confirmUser = function(req, res, next) {
+	if (req.user) {
+		return next();
+	} else {
+		return res.json({
+			errorMessage: `You are not authorized to access this page. 
+			Please log in.`
+		});
+	}
+};
 
 exports.getUserID = function(req, res) {
 	if (req.user) {
