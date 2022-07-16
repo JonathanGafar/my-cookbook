@@ -27,12 +27,6 @@ import RecipeStepDrawerSection from
 import PhotoDrawerSection from
 	'./DrawerSections/PhotoSection/PhotoDrawerSection';
 
-import {deleteDescription} from
-	'./DrawerSections/DescriptionSection/descriptionSlice';
-import {deleteIngredient} from
-	'./DrawerSections/IngredientsSection/ingredientsSlice';
-import {deleteRecipeStep} from
-	'./DrawerSections/RecipeStepsSection/recipeStepsSlice';
 import {cleanRecipeDrawer, getRecipeFromRedux} from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
 
@@ -52,6 +46,7 @@ export default function RecipeDrawer(props) {
 	async function saveRecipeOnClick() {
 		const recipeData = getRecipeFromRedux();
 		const response = await mutateAsync(recipeData);
+		console.log(response);
 	}
 
 	return (

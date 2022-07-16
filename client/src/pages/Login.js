@@ -16,8 +16,11 @@ import {useNavigate} from 'react-router-dom';
 
 import HLogoBar from '../components/HLogoBar';
 import {loginUser} from '../api/api';
+import {useAuthentication} from '../customHooks';
 
 export default function Login() {
+	const isLoggedIn = useAuthentication();
+
 	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
 	returns an array of booleans. */
 	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
@@ -55,10 +58,13 @@ export default function Login() {
 			return setInvalidCredentials(user.errorMessage);
 		}
 
+		localStorage.setItem('userId', user.id);
 		navigate(`/users/${user.id}`, {replace: true});
 	}
 
 	return (
+		<>
+			{!isLoggedIn &&
 		<Box
 			h='100vh'
 			bg='pageBackgroundColor'
@@ -86,7 +92,7 @@ export default function Login() {
 							})}
 						/>
 						<FormErrorMessage>
-							Enter your email address
+						Enter your email address
 						</FormErrorMessage>
 					</FormControl>
 
@@ -100,29 +106,30 @@ export default function Login() {
 							})}
 						/>
 						<FormErrorMessage>
-							Enter your password
+						Enter your password
 						</FormErrorMessage>
 					</FormControl>
 
 					{isError &&
-					<Text color='red' textAlign='center'>
-						A network error occured. Please try again.
-					</Text>}
+				<Text color='red' textAlign='center'>
+					A network error occured. Please try again.
+				</Text>}
 
 					{invalidCredentials &&
-					<Text color='red' textAlign='center'>
-						{invalidCredentials}
-					</Text>}
+				<Text color='red' textAlign='center'>
+					{invalidCredentials}
+				</Text>}
 
 					<Button
 						type='submit'
 						variant='generalButton'
 						isLoading={isSubmitting}>
-						Log in
+					Log in
 					</Button>
 					<Link>Forgot password?</Link>
 				</VStack>
 			</form>
-		</Box>
+		</Box>}
+		</>
 	);
 }

@@ -82,7 +82,7 @@ exports.loginUser = [
 			}
 	
 			if (!user) {
-				return res.json(info);
+				return res.status(400).json(info);
 			}
 			
 			/* We are using a callback here instead of the async-await pattern 
@@ -92,7 +92,7 @@ exports.loginUser = [
 				if (err) {
 					return next(err);
 				}
-	
+
 				return res.json({
 					username: user.username,
 					email: user.email,
@@ -103,26 +103,13 @@ exports.loginUser = [
 	}
 ];
 
-// Confirm user is logged in
-exports.confirmUser = function(req, res, next) {
-	if (req.user) {
+// Custom middleware is needed for this, as access to the req object is necessary
+exports.isAuthenticated = function(req, res, next) {
+	if (req.isAuthenticated()) {
 		return next();
 	} else {
-		return res.json({
-			errorMessage: `You are not authorized to access this page. 
-			Please log in.`
+		return res.status(401).json({
+			errorMessage: 'You are not authorized to access this page.'
 		});
 	}
-};
-
-exports.getUserID = function(req, res) {
-	if (req.user) {
-		return res.json({
-			id: req.user._id.toString()
-		});
-	}
-
-	return res.json({
-		errorMessage: 'No user logged in'
-	});
 };

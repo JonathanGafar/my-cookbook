@@ -31,7 +31,7 @@ exports.saveRecipe = [
 			};
 
 			const user = new User({
-				name: req.user.name,
+				username: req.user.username,
 				email: req.user.email,
 				password: req.user.password,
 				recipes: [...req.user.recipes, recipe],
@@ -41,7 +41,11 @@ exports.saveRecipe = [
 			const updatedUser = await User.findByIdAndUpdate(req.user._id.toString(),
 				user, {new: true});
 
-			return res.json(updatedUser);
+			return res.json({
+				username: updatedUser.username,
+				recipes: updatedUser.recipes,
+				id: updatedUser._id.toString()
+			});
 		}
 
 		return res.status(400).json({

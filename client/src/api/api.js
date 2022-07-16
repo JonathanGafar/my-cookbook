@@ -23,19 +23,10 @@ export async function loginUser(formData) {
 	return response.json();
 }
 
-async function getUserID() {
-	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/userid`, {
-		method: 'GET',
-		credentials: 'include'
-	});
-
-	return response.json();
-}
-
 export async function saveRecipe(recipeData) {
-	const userID = await getUserID();
+	const userID = localStorage.getItem('userId');
 	const response =
-		await fetch(`${process.env.REACT_APP_API_SERVER}/api/users/${userID.id}/recipes`,
+		await fetch(`${process.env.REACT_APP_API_SERVER}/api/users/${userID}/recipes`,
 			{
 				method: 'POST',
 				credentials: 'include',

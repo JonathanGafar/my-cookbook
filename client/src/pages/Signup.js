@@ -15,19 +15,10 @@ import {useNavigate} from 'react-router';
 
 import HLogoBar from '../components/HLogoBar';
 import {signupUser} from '../api/api';
+import {useAuthentication} from '../customHooks';
 
 export default function Signup() {
-	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
-	returns an array of booleans. */
-	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
-	const [formSubmitError, setFormSubmitError] = React.useState(null);
-
-	const formStyles = {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
-	};
+	const isLoggedIn = useAuthentication();
 
 	const {
 		register,
@@ -48,6 +39,18 @@ export default function Signup() {
 
 	const navigate = useNavigate();
 
+	/* Detect whether the screen is medium size (48rem) or larger. useMediaQuery
+	returns an array of booleans. */
+	const [isMediumOrLargerScreen] = useMediaQuery('(min-width: 48rem)');
+	const [formSubmitError, setFormSubmitError] = React.useState(null);
+
+	const formStyles = {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		marginTop: isMediumOrLargerScreen ? '3rem' : '6rem'
+	};
+
 	async function onSubmit(data) {
 		// Reset error once the form is submitted again
 		setFormSubmitError(null);
@@ -57,15 +60,20 @@ export default function Signup() {
 			return setFormSubmitError(user.errorMessage);
 		}
 
+		navigate('/login');
+
 		// Reset all input fields after the form is submitted
 		reset();
 	}
 
 	return (
+		<>
+			{!isLoggedIn &&
 		<Box
 			h='100vh'
 			bg='pageBackgroundColor'
 		>
+
 			<HLogoBar />
 			<form onSubmit={handleSubmit(onSubmit)} style={{...formStyles}}>
 				<VStack
@@ -89,7 +97,7 @@ export default function Signup() {
 							})}
 						/>
 						<FormErrorMessage>
-							Enter a username
+					Enter a username
 						</FormErrorMessage>
 					</FormControl>
 
@@ -102,7 +110,7 @@ export default function Signup() {
 							})}
 						/>
 						<FormErrorMessage>
-						Enter your email
+				Enter your email
 						</FormErrorMessage>
 					</FormControl>
 
@@ -116,7 +124,7 @@ export default function Signup() {
 							})}
 						/>
 						<FormErrorMessage>
-							Password must be at least 8 characters long
+					Password must be at least 8 characters long
 						</FormErrorMessage>
 					</FormControl>
 
@@ -132,30 +140,31 @@ export default function Signup() {
 							})}
 						/>
 						<FormErrorMessage>
-							Passwords do not match
+					Passwords do not match
 						</FormErrorMessage>
 					</FormControl>
 
 					{formSubmitError &&
-					<Text color='red' textAlign='center'>
-						{formSubmitError}
-					</Text>}
+			<Text color='red' textAlign='center'>
+				{formSubmitError}
+			</Text>}
 
 					{isError &&
-					<Text color='red' textAlign='center'>
-						A network error occured. The user account was not created.
-						Please try again.
-					</Text>}
+			<Text color='red' textAlign='center'>
+				A network error occured. The user account was not created.
+				Please try again.
+			</Text>}
 
 					<Button
 						type='submit'
 						variant='generalButton'
 						isLoading={isSubmitting}
 					>
-						Sign up
+				Sign up
 					</Button>
 				</VStack>
 			</form>
-		</Box>
+		</Box>}
+		</>
 	);
 }
