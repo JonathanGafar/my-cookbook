@@ -6,6 +6,7 @@ const recipeController = require('../controllers/recipeController');
 // Authentication POST routes
 router.post('/users', authController.signupUser);
 router.post('/login', authController.loginUser);
+router.post('/logout', authController.logoutUser);
 
 // User content GET routes
 router.get('/users/:id', authController.isAuthenticated, function(req, res, next) {

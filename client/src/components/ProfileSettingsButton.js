@@ -8,10 +8,22 @@ import {
 	MenuDivider,
 	IconButton
 } from '@chakra-ui/react';
-
+import {useMutation} from 'react-query';
+import {useNavigate} from 'react-router-dom';
 import {MdMenu} from 'react-icons/md';
 
+import {logoutUser} from '../api/api';
+
 export default function ProfileSettingsButton(props) {
+	const {mutateAsync} = useMutation(logoutUser);
+	const navigate = useNavigate();
+
+	async function handleLogoutOnClick() {
+		await mutateAsync();
+		localStorage.removeItem('userId');
+		navigate('/');
+	}
+
 	return (
 		<Menu closeOnSelect={true}>
 			<MenuButton
@@ -40,7 +52,9 @@ export default function ProfileSettingsButton(props) {
 					<MenuItemOption value='completelyPrivate'>Completely private</MenuItemOption>
 				</MenuOptionGroup>
 				<MenuDivider />
-				<MenuItemOption>Log out</MenuItemOption>
+				<MenuItemOption onClick={handleLogoutOnClick}>
+					Log out
+				</MenuItemOption>
 			</MenuList>
 		</Menu>
 	);

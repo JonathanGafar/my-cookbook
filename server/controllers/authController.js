@@ -82,7 +82,7 @@ exports.loginUser = [
 			}
 	
 			if (!user) {
-				return res.status(400).json(info);
+				return res.status(401).json(info);
 			}
 			
 			/* We are using a callback here instead of the async-await pattern 
@@ -102,6 +102,35 @@ exports.loginUser = [
 		})(req, res, next);
 	}
 ];
+
+exports.logoutUser = function(req, res, next) {
+	/* req.logout is called first, as it is most important. It removes the user 
+	object from	req.user. With that done, req.isAuthenticated - which is used 
+	in the middleware to authenticate users trying to access protected routes
+	 - returns false. */
+	req.logout(function(err) {
+		if (err) {
+			return res.status(500).json({
+				errorMessage: `For unknown reasons, the server cannot log you out. 
+				Please clear your cookies to ensure that you're logged out.`
+			});
+		}
+
+		req.session.destroy(function(err) {
+			if (err) {
+				return res.status(500).json({
+					errorMessage: `For unknown reasons, the server cannot log you out. 
+						Please clear your cookies to ensure that you're logged out.`
+				});
+			}
+		});
+
+		res.clearCookie('connect.sid');
+		return res.json({
+			message: 'You have been logged out'
+		});
+	});
+};
 
 // Custom middleware is needed for this, as access to the req object is necessary
 exports.isAuthenticated = function(req, res, next) {

@@ -23,6 +23,16 @@ export async function loginUser(formData) {
 	return response.json();
 }
 
+export async function logoutUser() {
+	const response = await fetch(`${process.env.REACT_APP_API_SERVER}/api/logout`, {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}
+
 export async function saveRecipe(recipeData) {
 	const userID = localStorage.getItem('userId');
 	const response =
