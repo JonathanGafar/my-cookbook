@@ -31,6 +31,8 @@ export async function logoutUser() {
 			'Content-Type': 'application/json'
 		}
 	});
+
+	return response.json();
 }
 
 export async function saveRecipe(recipeData) {

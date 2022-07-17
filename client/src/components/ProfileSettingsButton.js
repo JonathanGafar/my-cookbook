@@ -6,7 +6,8 @@ import {
 	MenuOptionGroup,
 	MenuItemOption,
 	MenuDivider,
-	IconButton
+	IconButton,
+	useToast
 } from '@chakra-ui/react';
 import {useMutation} from 'react-query';
 import {useNavigate} from 'react-router-dom';
@@ -17,11 +18,34 @@ import {logoutUser} from '../api/api';
 export default function ProfileSettingsButton(props) {
 	const {mutateAsync} = useMutation(logoutUser);
 	const navigate = useNavigate();
+	const toast = useToast();
 
 	async function handleLogoutOnClick() {
-		await mutateAsync();
-		localStorage.removeItem('userId');
-		navigate('/');
+		try {
+			const response = await mutateAsync();
+			if (response.errorMessage) {
+				toast({
+					title: 'Network error',
+					description: `There was a server error when trying to log you out. 
+						Please clear all of your cookies to log yourself out`,
+					status: 'error',
+					duration: 9000,
+					isClosable: true
+				  });
+			} else {
+				localStorage.removeItem('userId');
+				navigate('/');
+			}
+		} catch (err) {
+			toast({
+				title: 'Network error',
+				description: `There was a server error when trying to log you out. 
+					Please clear all of your cookies to log yourself out.`,
+				status: 'error',
+				duration: 9000,
+				isClosable: true
+			  });
+		}
 	}
 
 	return (
