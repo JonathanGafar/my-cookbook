@@ -23,7 +23,7 @@ import {addPhoto, deletePhoto} from './photosSlice';
 import PhotoModal from './PhotoModal';
 
 export default function PhotoItem(props) {
-	const photo = useSelector(state => state.photos.photos[props.photoNum]);
+	const photoURL = useSelector(state => state.photos.photoURLs[props.photoNum - 1]);
 	const dispatch = useDispatch();
 
 	const toast = useToast();
@@ -50,7 +50,8 @@ export default function PhotoItem(props) {
 		if (photoRef.current.files[0].size < 5000000) {
 			dispatch(addPhoto({
 				photoNum: props.photoNum,
-				photo: URL.createObjectURL(photoRef.current.files[0])
+				photo: photoRef.current.files[0],
+				photoURL: URL.createObjectURL(photoRef.current.files[0])
 			}));
 		} else {
 			return toast({
@@ -67,7 +68,7 @@ export default function PhotoItem(props) {
 
 	return (
 		<VStack>
-			{!photo &&
+			{!photoURL &&
 				<Image
 					src={emptyPhoto}
 					boxSize={{base: '6rem', smd: '10rem', lg: '10rem'}}
@@ -75,9 +76,9 @@ export default function PhotoItem(props) {
 					mb='0.5rem'
 					borderRadius='xl'
 				/>}
-			{photo &&
+			{photoURL &&
 				<Image
-					src={photo}
+					src={photoURL}
 					boxSize={{base: '8rem', smd: '10rem', lg: '10rem'}}
 					objectFit='cover'
 					mb='0.5rem'
@@ -89,7 +90,7 @@ export default function PhotoItem(props) {
 				onOpen={onOpenPhoto}
 				isOpen={isOpenPhoto}
 				onClose={onClosePhoto}
-				photo={photo}
+				photoURL={photoURL}
 			/>
 			<HStack spacing='1.5rem'>
 				<BiPhotoAlbum
@@ -102,7 +103,7 @@ export default function PhotoItem(props) {
 					className='drawer-section-button'
 					aria-label='Delete ingredient'
 					size='1.1rem'
-					onClick={() => { if (photo) onOpen(); }}
+					onClick={() => { if (photoURL) onOpen(); }}
 				/>
 				<AlertDialog
 					isOpen={isOpen}

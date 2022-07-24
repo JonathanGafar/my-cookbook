@@ -21,7 +21,7 @@ export default function PhotoModal(props) {
 					<ModalBody p='0'>
 						<ModalCloseButton onClick={props.onClose} />
 						<Image
-							src={props.photo}
+							src={props.photoURL}
 							objectFit='cover'
 							boxSize={{base: '90vw', smd: '90vh'}}
 							borderRadius='xl'

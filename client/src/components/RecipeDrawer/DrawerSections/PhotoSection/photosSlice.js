@@ -3,14 +3,17 @@ import {createSlice} from '@reduxjs/toolkit';
 const photosSlice = createSlice({
 	name: 'photosSlice',
 	initialState: {
-		photos: [null, null, null]
+		photos: [null, null, null],
+		photoURLs: [null, null, null]
 	},
 	reducers: {
 		addPhoto: (state, action) => {
-			state.photos[action.payload.photoNum] = action.payload.photo;
+			state.photos[action.payload.photoNum - 1] = action.payload.photo;
+			state.photoURLs[action.payload.photoNum - 1] = action.payload.photoURL;
 		},
 		deletePhoto: (state, action) => {
-			state.photos[action.payload] = null;
+			state.photos[action.payload - 1] = null;
+			state.photoURLs[action.payload - 1] = null;
 		}
 	}
 });
