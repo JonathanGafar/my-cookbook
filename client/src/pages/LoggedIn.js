@@ -8,7 +8,7 @@ import {
 	VStack,
 	useBreakpointValue
 } from '@chakra-ui/react';
-
+import {useNavigate} from 'react-router-dom';
 import {FaSearch} from 'react-icons/fa';
 
 import VNavbar from '../components/VNavbar';
@@ -18,16 +18,23 @@ import ProfileSettingsButton from '../components/ProfileSettingsButton';
 import NotificationsButton from '../components/NotificationsButton';
 import ProfilePhotoButton from '../components/ProfilePhotoButton';
 import InputGroupRight from '../components/InputGroupRight';
+import {useAuthentication} from '../customHooks';
 
 export default function LoggedIn() {
+	const isLoggedIn = useAuthentication();
+	const navigate = useNavigate();
 	const screenSize = useBreakpointValue({
 		lg: 'large'
 	});
 
-	if (screenSize === 'large') {
-		return (<LargeScreenPage />);
+	if (isLoggedIn) {
+		if (screenSize === 'large') {
+			return (<LargeScreenPage />);
+		} else {
+			return (<SmallScreenPage />);
+		}
 	} else {
-		return (<SmallScreenPage />);
+		navigate('/login', {replace: true});
 	}
 }
 
