@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid';
 import store from '../../redux/store.js';
 import {deleteDescription} from
 	'./DrawerSections/DescriptionSection/descriptionSlice';
@@ -45,6 +46,7 @@ export function cleanRecipeDrawer() {
 export function getRecipeFromRedux() {
 	const recipeDrawerData = store.getState();
 	const recipeData = {
+		id: uuidv4(),
 		name: recipeDrawerData.description.name,
 		description: recipeDrawerData.description.description,
 		ingredients: recipeDrawerData.ingredients.ingredients,
