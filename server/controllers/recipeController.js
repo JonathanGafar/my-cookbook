@@ -28,6 +28,7 @@ exports.saveRecipe = [
 
 		if (req.user._id.toString() === req.params.id) {
 			const recipe = {
+				id: req.body.id,
 				name: req.body.name,
 				description: req.body.description,
 				ingredients: JSON.parse(req.body.ingredients),
