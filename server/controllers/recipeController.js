@@ -1,11 +1,15 @@
 /* This file contains controller functions that are related to creating, reading, 
 updating, or deleting a recipe */
 
+const multer = require('multer');
 const {body, validationResult} = require('express-validator');
 
 const User = require('../mongoose/models/UserModel');
 
+const upload = multer();
+
 exports.saveRecipe = [
+	upload.none(),
 	body('name', 'You  must enter a recipe name').trim().isLength({min: 1}).escape(),
 	body('description').escape(),
 	body('ingredeints.*').escape(),
@@ -26,8 +30,8 @@ exports.saveRecipe = [
 			const recipe = {
 				name: req.body.name,
 				description: req.body.description,
-				ingredients: req.body.ingredients,
-				recipeSteps: req.body.recipeSteps
+				ingredients: JSON.parse(req.body.ingredients),
+				recipeSteps: JSON.parse(req.body.recipeSteps)
 			};
 
 			const user = new User({

@@ -42,10 +42,7 @@ export async function saveRecipe(recipeData) {
 			{
 				method: 'POST',
 				credentials: 'include',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(recipeData)
+				body: recipeData
 			});
 
 	return response.json();

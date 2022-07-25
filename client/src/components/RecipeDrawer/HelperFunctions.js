@@ -45,13 +45,16 @@ export function cleanRecipeDrawer() {
 
 export function getRecipeFromRedux() {
 	const recipeDrawerData = store.getState();
-	const recipeData = {
-		id: uuidv4(),
-		name: recipeDrawerData.description.name,
-		description: recipeDrawerData.description.description,
-		ingredients: recipeDrawerData.ingredients.ingredients,
-		recipeSteps: recipeDrawerData.recipeSteps.recipeSteps
-	};
+	const recipeData = new FormData();
+
+	recipeData.append('id', uuidv4());
+	recipeData.append('name', recipeDrawerData.description.name);
+	recipeData.append('description', recipeDrawerData.description.description);
+	recipeData.append('ingredients', JSON.stringify(recipeDrawerData.ingredients
+		.ingredients));
+	recipeData.append('recipeSteps', JSON.stringify(recipeDrawerData.recipeSteps
+		.recipeSteps));
+	recipeData.append('photos', recipeDrawerData.photos.photos);
 
 	return recipeData;
 }
