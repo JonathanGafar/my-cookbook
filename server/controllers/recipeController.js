@@ -1,15 +1,35 @@
 /* This file contains controller functions that are related to creating, reading, 
 updating, or deleting a recipe */
 
-const multer = require('multer');
 const {body, validationResult} = require('express-validator');
 
 const User = require('../mongoose/models/UserModel');
-
-const upload = multer();
+/* Function to upload photos that are in the request object (in the 
+	fieldname photos) to the S3 bucket */
+const uploadPhotos = require('../S3/S3Config').array('photos', 3);
 
 exports.saveRecipe = [
-	upload.none(),
+	function(req, res, next) {
+		uploadPhotos(req, res, function(err) {
+			if(err) {
+				return res.json({
+					success: 'false',
+					errors: {
+						title: 'Image Upload Error',
+						detail: err.message,
+						error: err
+					}
+				});
+			}
+
+			req.photos = [];
+			req.files.forEach(photoObj => {
+				req.photos.push(photoObj.key);
+			});
+
+			return next();
+		});
+	},
 	body('name', 'You  must enter a recipe name').trim().isLength({min: 1}).escape(),
 	body('description').escape(),
 	body('ingredeints.*').escape(),
@@ -32,7 +52,8 @@ exports.saveRecipe = [
 				name: req.body.name,
 				description: req.body.description,
 				ingredients: JSON.parse(req.body.ingredients),
-				recipeSteps: JSON.parse(req.body.recipeSteps)
+				recipeSteps: JSON.parse(req.body.recipeSteps),
+				photos: req.photos
 			};
 
 			const user = new User({

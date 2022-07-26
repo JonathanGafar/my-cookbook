@@ -30,7 +30,7 @@ const upload = multer({
 		s3,
 		bucket: process.env.S3_BUCKET_NAME,
 		metadata: function(req, file, cb) {
-			cb(null, {fieldName: 'TESTING_METADATA'});
+			cb(null, {fieldName: 'photo metadata'});
 		},
 		key: function(req, file, cb) {
 			cb(null, Date.now().toString());

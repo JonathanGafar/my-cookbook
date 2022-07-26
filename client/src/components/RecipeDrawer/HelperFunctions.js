@@ -54,7 +54,12 @@ export function getRecipeFromRedux() {
 		.ingredients));
 	recipeData.append('recipeSteps', JSON.stringify(recipeDrawerData.recipeSteps
 		.recipeSteps));
-	recipeData.append('photos', recipeDrawerData.photos.photos);
+
+	recipeDrawerData.photos.photos.forEach(photo => {
+		if (photo) {
+			recipeData.append('photos', photo);
+		}
+	});
 
 	return recipeData;
 }
