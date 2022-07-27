@@ -1,4 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
 import store from '../../redux/store.js';
 import {deleteDescription} from
 	'./DrawerSections/DescriptionSection/descriptionSlice';
@@ -47,7 +46,6 @@ export function getRecipeFromRedux() {
 	const recipeDrawerData = store.getState();
 	const recipeData = new FormData();
 
-	recipeData.append('id', uuidv4());
 	recipeData.append('name', recipeDrawerData.description.name);
 	recipeData.append('description', recipeDrawerData.description.description);
 	recipeData.append('ingredients', JSON.stringify(recipeDrawerData.ingredients

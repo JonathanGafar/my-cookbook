@@ -2,6 +2,7 @@
 updating, or deleting a recipe */
 
 const {body, validationResult} = require('express-validator');
+const {v4 : uuidv4} = require('uuid');
 
 const User = require('../mongoose/models/UserModel');
 /* Function to upload photos that are in the request object (in the 
@@ -10,8 +11,8 @@ const uploadPhotos = require('../S3/S3Config').array('photos', 3);
 
 exports.saveRecipe = [
 	function(req, res, next) {
-		uploadPhotos(req, res, function(err) {
-			if(err) {
+		uploadPhotos(req, res, function(err) {	
+			if (err) {
 				return res.json({
 					success: 'false',
 					errors: {
@@ -23,17 +24,22 @@ exports.saveRecipe = [
 			}
 
 			req.photos = [];
-			req.files.forEach(photoObj => {
-				req.photos.push(photoObj.key);
-			});
+
+			if (req.files) {
+				req.files.forEach(photoObj => {
+					req.photos.push(photoObj.key);
+				});
+			}
 
 			return next();
 		});
 	},
+	
 	body('name', 'You  must enter a recipe name').trim().isLength({min: 1}).escape(),
 	body('description').escape(),
 	body('ingredeints.*').escape(),
 	body('recipeSteps.*').escape(),
+
 	async function(req, res, next) {
 		const errors = validationResult(req);
 
@@ -48,7 +54,7 @@ exports.saveRecipe = [
 
 		if (req.user._id.toString() === req.params.id) {
 			const recipe = {
-				id: req.body.id,
+				id: uuidv4(),
 				name: req.body.name,
 				description: req.body.description,
 				ingredients: JSON.parse(req.body.ingredients),

@@ -12,7 +12,20 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-const fileFilter = (req, file, cb) => {
+const fileFilter = function(req, file, cb) {
+
+	/* Validation on the recipe name has to be done here, before the photos are 
+	uploaded. The upload.array function that is used to upload the photos to the 
+	S3 bucket will not execute if it is placed after the express-validator functions. 
+	This is because the form submitted is multipart and Express cannot parse it. 
+	Multer must be ran first so that it can populate req.body. The express-validator 
+	functions will be ran after that. If the below code is excluded, then the photos 
+	of a submitted recipe would still be uploaded to the S3 bucket even if the form 
+	doesn't pass validation. This is undesireable. */
+	if (req.body.name.length === 0) {
+		cb(new Error('You must enter a recipe name'), false);
+	}
+
 	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || 
 		file.mimetype === 'image/png'
 	) {
