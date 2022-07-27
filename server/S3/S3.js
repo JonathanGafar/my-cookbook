@@ -51,4 +51,16 @@ const upload = multer({
 	}),
 });
 
-module.exports = upload;
+
+const deletePhoto = function(key) {
+	s3.deleteObject({
+		Bucket: process.env.S3_BUCKET_NAME,
+		Key: key
+	}, function(err) {
+		if (err) {
+			console.log(err);
+		}
+	});
+};
+
+module.exports = {upload, deletePhoto};
