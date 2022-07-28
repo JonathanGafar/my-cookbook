@@ -14,7 +14,8 @@ import {
 	Tab,
 	TabPanels,
 	TabPanel,
-	Button
+	Button,
+	useToast
 } from '@chakra-ui/react';
 import {useMutation} from 'react-query';
 
@@ -29,8 +30,21 @@ import PhotoDrawerSection from
 
 import {cleanRecipeDrawer, getRecipeFromRedux} from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
+import store from '../../redux/store.js';
+
+function isRecipeValid() {
+	const {
+		description: {
+			name
+		}
+	} = store.getState();
+
+	return name.trim().length > 0;
+}
 
 export default function RecipeDrawer(props) {
+	const toast = useToast();
+
 	const commonTabProps = {
 		fontSize: {
 			base: 'lg',
@@ -44,9 +58,19 @@ export default function RecipeDrawer(props) {
 	const {mutateAsync} = useMutation(saveRecipe);
 
 	async function saveRecipeOnClick() {
-		const recipeData = getRecipeFromRedux();
-		const response = await mutateAsync(recipeData);
-		console.log(response);
+		if (isRecipeValid()) {
+			const recipeData = getRecipeFromRedux();
+			const response = await mutateAsync(recipeData);
+			console.log(response);
+		} else {
+			toast({
+				title: 'Cannot submit recipe',
+				description: 'You must enter a recipe name',
+				status: 'error',
+				duration: 4000,
+				isClosable: true
+			});
+		}
 	}
 
 	return (
