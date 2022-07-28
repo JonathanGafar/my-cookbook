@@ -34,7 +34,6 @@ import {
 	isRecipeValid
 } from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
-import store from '../../redux/store.js';
 
 export default function RecipeDrawer(props) {
 	const toast = useToast();
