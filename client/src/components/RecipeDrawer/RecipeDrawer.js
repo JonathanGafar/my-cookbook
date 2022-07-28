@@ -37,6 +37,7 @@ import {saveRecipe} from '../../api/api';
 
 export default function RecipeDrawer(props) {
 	const toast = useToast();
+	const closeBtnRef = React.useRef();
 
 	const commonTabProps = {
 		fontSize: {
@@ -48,12 +49,13 @@ export default function RecipeDrawer(props) {
 		}
 	};
 
-	const {mutateAsync} = useMutation(saveRecipe);
+	const {mutateAsync, isLoading} = useMutation(saveRecipe);
 
 	async function saveRecipeOnClick() {
 		if (isRecipeValid()) {
 			const recipeData = getRecipeFromRedux();
 			const response = await mutateAsync(recipeData);
+			closeBtnRef.current.click();
 			console.log(response);
 		} else {
 			toast({
@@ -130,10 +132,15 @@ export default function RecipeDrawer(props) {
 						variant='drawerButton'
 						mr='1rem'
 						onClick={props.onClose}
+						ref={closeBtnRef}
 					>
 						Close
 					</Button>
-					<Button variant='drawerButton' onClick={saveRecipeOnClick}>
+					<Button
+						variant='drawerButton'
+						onClick={saveRecipeOnClick}
+						isLoading={isLoading}
+					>
 						Save
 					</Button>
 				</DrawerFooter>
