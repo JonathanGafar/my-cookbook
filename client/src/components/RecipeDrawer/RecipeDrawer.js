@@ -32,6 +32,8 @@ import {cleanRecipeDrawer, getRecipeFromRedux} from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
 import store from '../../redux/store.js';
 
+/* Declared outside of the functional component so that the entire RecipeDrawer
+doesn't rerender whenever the name changes */
 function isRecipeValid() {
 	const {
 		description: {
