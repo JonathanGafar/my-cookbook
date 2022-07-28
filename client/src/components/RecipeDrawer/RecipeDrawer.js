@@ -28,21 +28,13 @@ import RecipeStepDrawerSection from
 import PhotoDrawerSection from
 	'./DrawerSections/PhotoSection/PhotoDrawerSection';
 
-import {cleanRecipeDrawer, getRecipeFromRedux} from './HelperFunctions';
+import {
+	cleanRecipeDrawer,
+	getRecipeFromRedux,
+	isRecipeValid
+} from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
 import store from '../../redux/store.js';
-
-/* Declared outside of the functional component so that the entire RecipeDrawer
-doesn't rerender whenever the name changes */
-function isRecipeValid() {
-	const {
-		description: {
-			name
-		}
-	} = store.getState();
-
-	return name.trim().length > 0;
-}
 
 export default function RecipeDrawer(props) {
 	const toast = useToast();

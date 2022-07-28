@@ -61,3 +61,15 @@ export function getRecipeFromRedux() {
 
 	return recipeData;
 }
+
+/* Declared outside of the functional component so that the entire RecipeDrawer
+doesn't rerender whenever the name changes */
+function isRecipeValid() {
+	const {
+		description: {
+			name
+		}
+	} = store.getState();
+
+	return name.trim().length > 0;
+}
