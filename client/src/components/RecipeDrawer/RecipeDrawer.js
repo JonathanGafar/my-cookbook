@@ -36,6 +36,18 @@ import {
 import {saveRecipe} from '../../api/api';
 
 export default function RecipeDrawer(props) {
+	const drawerButtonProps = {
+		bg: 'buttonColor',
+		color: 'white',
+		w: 'fit-content',
+		_hover: {
+			opacity: '0.7'
+		},
+		_active: {
+			opacity: '0.7'
+		}
+	};
+
 	const toast = useToast();
 	const closeBtnRef = React.useRef();
 
@@ -137,9 +149,9 @@ export default function RecipeDrawer(props) {
 						Close
 					</Button>
 					<Button
-						variant='drawerButton'
 						onClick={saveRecipeOnClick}
 						isLoading={isLoading}
+						{...drawerButtonProps}
 					>
 						Save
 					</Button>
