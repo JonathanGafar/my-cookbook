@@ -55,7 +55,6 @@ export function resetReduxStore() {
 			recipeSteps
 		},
 		photos: {
-			photos,
 			photoURLs
 		}
 	} = store.getState();
