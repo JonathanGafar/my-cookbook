@@ -15,10 +15,19 @@ export const descriptionSlice = createSlice({
 		},
 		deleteDescription: (state) => {
 			state.description = null;
+		},
+		deleteName: (state) => {
+			state.name = '';
 		}
 	}
 
 });
 
-export const {addName, addDescription, deleteDescription} = descriptionSlice.actions;
+export const {
+	addName,
+	addDescription,
+	deleteDescription,
+	deleteName
+} = descriptionSlice.actions;
+
 export default descriptionSlice.reducer;

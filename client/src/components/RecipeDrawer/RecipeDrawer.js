@@ -32,7 +32,7 @@ import {
 	cleanRecipeDrawer,
 	getRecipeFromRedux,
 	isRecipeValid,
-	revokePhotoURLs
+	resetReduxStore
 } from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
 
@@ -67,11 +67,11 @@ export default function RecipeDrawer(props) {
 	async function saveRecipeOnClick() {
 		if (isRecipeValid()) {
 			const recipeData = getRecipeFromRedux();
-			revokePhotoURLs();
 			const response = await mutateAsync(recipeData);
 			if (!response.errorMessage) {
 				closeBtnRef.current.click();
 				console.log(response);
+				resetReduxStore();
 			} else {
 				toast({
 					title: 'Network error',
