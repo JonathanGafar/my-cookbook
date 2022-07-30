@@ -31,7 +31,8 @@ import PhotoDrawerSection from
 import {
 	cleanRecipeDrawer,
 	getRecipeFromRedux,
-	isRecipeValid
+	isRecipeValid,
+	revokePhotoURLs
 } from './HelperFunctions';
 import {saveRecipe} from '../../api/api';
 
@@ -66,9 +67,20 @@ export default function RecipeDrawer(props) {
 	async function saveRecipeOnClick() {
 		if (isRecipeValid()) {
 			const recipeData = getRecipeFromRedux();
+			revokePhotoURLs();
 			const response = await mutateAsync(recipeData);
-			closeBtnRef.current.click();
-			console.log(response);
+			if (!response.errorMessage) {
+				closeBtnRef.current.click();
+				console.log(response);
+			} else {
+				toast({
+					title: 'Network error',
+					description: response.errorMessage,
+					status: 'error',
+					duration: 4000,
+					isClosable: true
+				});
+			}
 		} else {
 			toast({
 				title: 'Cannot submit recipe',

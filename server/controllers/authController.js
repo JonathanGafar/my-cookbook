@@ -55,8 +55,8 @@ exports.signupUser = [
 				case 11000:
 					return res.status(400).json({
 						errorMessage:
-									`This email address already has an account 
-										associated with it.`
+									'This email address already has an account ' + 
+										'associated with it.'
 					});
 				default:
 					return res.status(400).json(err);
@@ -111,16 +111,17 @@ exports.logoutUser = function(req, res, next) {
 	req.logout(function(err) {
 		if (err) {
 			return res.status(500).json({
-				errorMessage: `For unknown reasons, the server cannot log you out. 
-				Please clear your cookies to ensure that you're logged out.`
+				errorMessage: 'For unknown reasons, the server cannot log you ' + 
+					'out. Please clear your cookies to ensure that you are logged out.'
 			});
 		}
 
 		req.session.destroy(function(err) {
 			if (err) {
 				return res.status(500).json({
-					errorMessage: `For unknown reasons, the server cannot log you out. 
-						Please clear your cookies to ensure that you're logged out.`
+					errorMessage: 'For unknown reasons, the server cannot log ' +  
+						'you out. Please clear your cookies to ensure that you ' +
+						'are logged out.'
 				});
 			}
 		});

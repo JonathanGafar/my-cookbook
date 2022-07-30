@@ -103,7 +103,7 @@ exports.saveRecipe = [
 
 				return res.status(500).json({
 					errorMessage: 
-						`An error occured. The recipe was not saved. Please try again.`
+						'An error occured. The recipe was not saved. Please try again.'
 				});
 			}
 		} else {

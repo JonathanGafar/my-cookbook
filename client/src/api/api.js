@@ -36,14 +36,21 @@ export async function logoutUser() {
 }
 
 export async function saveRecipe(recipeData) {
-	const userID = localStorage.getItem('userId');
-	const response =
-		await fetch(`${process.env.REACT_APP_API_SERVER}/api/users/${userID}/recipes`,
-			{
-				method: 'POST',
-				credentials: 'include',
-				body: recipeData
-			});
+	try {
+		const userID = localStorage.getItem('userId');
+		const response =
+			await fetch(`${process.env.REACT_APP_API_SERVER}/api/users/${userID}/recipes`,
+				{
+					method: 'POST',
+					credentials: 'include',
+					body: recipeData
+				});
 
-	return response.json();
+		return response.json();
+	} catch (err) {
+		return {
+			errorMessage: 'The server cannot be reached. The recipe was not saved. ' +
+				'Please try again.'
+		};
+	}
 }

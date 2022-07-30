@@ -73,3 +73,11 @@ export function isRecipeValid() {
 
 	return name.trim().length > 0;
 }
+
+export function revokePhotoURLs() {
+	const {
+		photos: {
+			photoURLs
+		}
+	} = store.getState();
+}
